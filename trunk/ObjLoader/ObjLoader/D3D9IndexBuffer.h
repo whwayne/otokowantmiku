@@ -12,14 +12,29 @@ public:
 	virtual ~D3D9IndexBuffer();
 
 public:
+	virtual void Copy(D3D9Res& rhs)
+	{
+		D3D9IndexBuffer* ib = (D3D9IndexBuffer*)(&rhs);
+		if (m_pD3D9IndexBuffer!=ib->m_pD3D9IndexBuffer)
+		{
+			if (m_pD3D9IndexBuffer)
+			{
+				m_pD3D9IndexBuffer->Release();
+			}	
+			m_pD3D9IndexBuffer = ib->m_pD3D9IndexBuffer;
+			if (m_pD3D9IndexBuffer)
+			{
+				m_pD3D9IndexBuffer->AddRef();
+			}
+		}
+	}
 
-
-	IDirect3DIndexBuffer9* GetD3D9VertexBufferPtr()
+	IDirect3DIndexBuffer9* GetD3D9IndexBufferPtr()
 	{
 		return m_pD3D9IndexBuffer;
 	}
 
-	IDirect3DIndexBuffer9** GetD3D9VertexBufferPP()
+	IDirect3DIndexBuffer9** GetD3D9IndexBufferPP()
 	{
 		return &m_pD3D9IndexBuffer;
 	}

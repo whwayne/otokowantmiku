@@ -3,57 +3,24 @@
 #include <stdio.h>
 #include "ObjLoader.h"
 #include "D3D9Device.h"
-
+#include "D3D9VertexBuffer.h"
+#include "D3D9Mesh.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
-LPDIRECT3DVERTEXBUFFER9 g_pVB = NULL; // Buffer to hold Vertices
-LPDIRECT3DINDEXBUFFER9  g_pIB = NULL;
+
 
 ObjLoader* obj;
-
-// A structure for our custom vertex type
-struct CUSTOMVERTEX
-{
-	FLOAT x, y, z; // The transformed position for the vertex
-	FLOAT nx,ny,nz;
-	FLOAT u,v;
-};
-
-// Our custom FVF, which describes our custom vertex structure
-#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_TEX0|D3DFVF_NORMAL)
+D3D9Mesh* pMesh;
 
 void InitGeometry()
 {
 	obj = new ObjLoader();
-	obj->LoadObjFromFile(std::string("cup.obj"));
+	obj->LoadFromFile(std::string("cup.obj"));
 
-	std::vector<ObjSubMeshContent>& content = obj->GetContent();
+	pMesh = new D3D9Mesh();
 
-	int vertexCount = content[0].mVertexBuffer.size()/8;
-
-	if( FAILED( D3D9Device::GetInstance().GetD3DDevice9()->CreateVertexBuffer(vertexCount*sizeof( CUSTOMVERTEX ),
-		0, D3DFVF_CUSTOMVERTEX,
-		D3DPOOL_DEFAULT, &g_pVB, NULL ) ) )
-	{
-		return ;
-	}
-	CUSTOMVERTEX* pVertices ;
-	g_pVB->Lock(0, 0, ( void** )&pVertices, 0 );
-	memcpy(pVertices,&content[0].mVertexBuffer[0],vertexCount*sizeof( CUSTOMVERTEX ));
-	g_pVB->Unlock();
-
-
-	if( FAILED( D3D9Device::GetInstance().GetD3DDevice9()->CreateIndexBuffer(content[0].mVertexIndexBuffer.size()*sizeof( int ),0,D3DFMT_INDEX32,D3DPOOL_DEFAULT,&g_pIB,NULL ) ) )
-	{
-		return ;
-	}
-
-	int* pIndex ;
-	g_pIB->Lock(0, 0,( void** )&pIndex, 0 );
-	memcpy(pIndex,&content[0].mVertexIndexBuffer[0],content[0].mVertexIndexBuffer.size()*sizeof( int ));
-	g_pIB->Unlock();
-
+	pMesh->SetUpFromObjLoader(*obj);
 }
 
 HRESULT InitD3D( HWND hWnd )
@@ -124,8 +91,8 @@ VOID Render()
 		// just the FVF, so that D3D knows what type of Vertices we are dealing
 		// with. Finally, we call DrawPrimitive() which does the actual rendering
 		// of our geometry (in this case, just one triangle).
-		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(g_pIB);
- 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, g_pVB, 0, sizeof( CUSTOMVERTEX ) );
+		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetIBArray()[0]->GetD3D9IndexBufferPtr());
+ 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetVBArray()[0]->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
  		 D3D9Device::GetInstance().GetD3DDevice9()->SetFVF( D3DFVF_CUSTOMVERTEX );
  		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[0].mVertexIndexBuffer.size()/3 );
 

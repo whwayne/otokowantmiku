@@ -33,7 +33,7 @@ ObjLoader::~ObjLoader()
 
 }
 
-void ObjLoader::LoadObjFromFile( std::string& path )
+void ObjLoader::LoadFromFile( std::string& path )
 {
 
 	std::vector<VertexCacheUnit> vertexCache;

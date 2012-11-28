@@ -177,16 +177,24 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="头文件"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			Name="Resource"
 			>
-		</Filter>
-		<Filter
-			Name="资源文件"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
-			>
+			<File
+				RelativePath=".\Loader.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Loader.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ResourceMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ResourceMgr.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Util"
@@ -248,7 +256,7 @@
 				>
 			</Filter>
 			<Filter
-				Name="Mesh"
+				Name="GraphicRes"
 				>
 				<File
 					RelativePath=".\ObjLoader.cpp"
@@ -271,6 +279,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Mesh"
+				>
+				<File
+					RelativePath=".\D3D9Mesh.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\D3D9Mesh.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="FrameWork"
@@ -289,6 +309,18 @@
 			</File>
 			<File
 				RelativePath=".\Res.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="IO"
+			>
+			<File
+				RelativePath=".\IO.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\IO.h"
 				>
 			</File>
 		</Filter>
