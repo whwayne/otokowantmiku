@@ -100,6 +100,7 @@ void ObjLoader::LoadFromFile( std::string& path )
 				int vUVIndex = atoi(strVtxCpn[1].c_str())-1;
 				int vNormalIndex = atoi(strVtxCpn[2].c_str())-1;
 
+				//-the fucking obj file's submesh vertex index is not restart from 0,so I have to do the fucking thing below;  
 				for (int i = 0;i<iSubMeshIndex; i++)
 				{
 					vPosIndex = vPosIndex - mSubMeshContent[i].mVertexPos.size()/3;
