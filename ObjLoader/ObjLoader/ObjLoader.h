@@ -1,4 +1,5 @@
 #pragma once
+#include "Loader.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <Windows.h>
@@ -21,13 +22,13 @@ struct ObjSubMeshContent
 
 
 
-class ObjLoader
+class ObjLoader:public Loader
 {
 public:
 	ObjLoader();
 	virtual ~ObjLoader();
 
-	void LoadObjFromFile(std::string& path);
+	void LoadFromFile(std::string& path);
 
 	std::vector<ObjSubMeshContent>& GetContent()
 	{
