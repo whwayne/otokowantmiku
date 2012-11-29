@@ -77,6 +77,7 @@ void ObjLoader::LoadFromFile( std::string& path )
 				// this meams a submesh start.
 				vertexCache.clear();
 				iSubMeshIndex++;
+				iVertexIndex = -1;
 				mSubMeshContent.push_back(ObjSubMeshContent());
 			}
 			//- v means the position of the vertices.

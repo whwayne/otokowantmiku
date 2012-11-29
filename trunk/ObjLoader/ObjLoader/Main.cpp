@@ -83,21 +83,14 @@ VOID Render()
 	// Begin the scene
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
-		// Draw the triangles in the vertex buffer. This is broken into a few
-		// steps. We are passing the Vertices down a "stream", so first we need
-		// to specify the source of that stream, which is our vertex buffer. Then
-		// we need to let D3D know what vertex shader to use. Full, custom vertex
-		// shaders are an advanced topic, but in most cases the vertex shader is
-		// just the FVF, so that D3D knows what type of Vertices we are dealing
-		// with. Finally, we call DrawPrimitive() which does the actual rendering
-		// of our geometry (in this case, just one triangle).
-		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetIBArray()[0]->GetD3D9IndexBufferPtr());
- 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetVBArray()[0]->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
+
+		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetIBArray()[1]->GetD3D9IndexBufferPtr());
+ 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetVBArray()[1]->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
  		 D3D9Device::GetInstance().GetD3DDevice9()->SetFVF( D3DFVF_CUSTOMVERTEX );
- 		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[0].mVertexIndexBuffer.size()/3 );
+ 		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[1].mVertexIndexBuffer.size()/3 );
 
 
-		  D3D9Device::GetInstance().GetD3DDevice9()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,obj->GetContent()[0].mVertexBuffer.size()/8,0,obj->GetContent()[0].mVertexIndexBuffer.size()/3);
+		  D3D9Device::GetInstance().GetD3DDevice9()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,obj->GetContent()[1].mVertexBuffer.size()/8,0,obj->GetContent()[1].mVertexIndexBuffer.size()/3);
 
 		// End the scene
 		 D3D9Device::GetInstance().GetD3DDevice9()->EndScene();
