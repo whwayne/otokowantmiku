@@ -12,6 +12,8 @@ public:
 	virtual ~D3D9IndexBuffer();
 
 public:
+	virtual bool SetUp(Loader& loader);
+
 	virtual void Copy(D3D9Res& rhs)
 	{
 		D3D9IndexBuffer* ib = (D3D9IndexBuffer*)(&rhs);

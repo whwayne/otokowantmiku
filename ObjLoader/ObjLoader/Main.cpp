@@ -20,7 +20,7 @@ void InitGeometry()
 
 	pMesh = new D3D9Mesh();
 
-	pMesh->SetUpFromObjLoader(*obj);
+	pMesh->SetUp(*obj);
 }
 
 HRESULT InitD3D( HWND hWnd )

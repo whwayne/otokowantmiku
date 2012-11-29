@@ -13,7 +13,8 @@ public:
 	D3D9Mesh();
 	virtual ~D3D9Mesh();
 
-	bool SetUpFromObjLoader(ObjLoader& objMesh);
+	
+	virtual bool SetUp(Loader& loader);
 
 	std::vector< Ptr<D3D9VertexBuffer> >& GetVBArray()
 	{

@@ -52,6 +52,8 @@ void ObjLoader::LoadFromFile( std::string& path )
 	
 	std::string sWholeFile((char*)ReadBuffer);
 	std::vector<std::string> strLines = Util_StrToken(sWholeFile,std::string("\n"));
+	
+	std::string lastHead;
 
 	for (unsigned int iline = 0;iline<strLines.size();iline++)
 	{
@@ -64,14 +66,19 @@ void ObjLoader::LoadFromFile( std::string& path )
 		
 		else if ( 0 == strcmp( strUnits[0].c_str(), "g" ) )
 		{
-			// this meams a submesh start.
-			vertexCache.clear();
-			iSubMeshIndex++;
-			mSubMeshContent.push_back(ObjSubMeshContent());
+			
+		
 		}
 
 		if (0 == strcmp( strUnits[0].c_str(), "v" ))
 		{
+			if (0 != strcmp( lastHead.c_str(), "v" ))
+			{
+				// this meams a submesh start.
+				vertexCache.clear();
+				iSubMeshIndex++;
+				mSubMeshContent.push_back(ObjSubMeshContent());
+			}
 			//- v means the position of the vertices.
 			mSubMeshContent[iSubMeshIndex].mVertexPos.push_back(atof(strUnits[1].c_str()));
 			mSubMeshContent[iSubMeshIndex].mVertexPos.push_back(atof(strUnits[2].c_str()));
@@ -150,6 +157,7 @@ void ObjLoader::LoadFromFile( std::string& path )
 				}
 			}
 		}
+		lastHead = strUnits[0];
 	}
 	delete[] ReadBuffer;
 }
