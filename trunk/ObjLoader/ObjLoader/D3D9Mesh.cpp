@@ -15,9 +15,11 @@ D3D9Mesh::~D3D9Mesh()
 }
 
 
-bool D3D9Mesh::SetUpFromObjLoader( ObjLoader& objMesh )
+bool D3D9Mesh::SetUp(Loader& loader)
 {
-	std::vector<ObjSubMeshContent>& content = objMesh.GetContent();
+	ObjLoader* pLoader = (ObjLoader*)(&loader);
+
+	std::vector<ObjSubMeshContent>& content = pLoader->GetContent();
 
 	if (content.size()==0)
 	{
