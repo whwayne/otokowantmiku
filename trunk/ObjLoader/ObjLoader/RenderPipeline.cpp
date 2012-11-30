@@ -19,3 +19,8 @@ void RenderPipeline::Init()
 	}
 }
 
+void RenderPipeline::RenderRenderables()
+{
+
+}
+

@@ -25,6 +25,9 @@ public:
 	{
 		return m_RenderableArries[type];
 	}
+
+	virtual void RenderRenderables();
+
 protected:
 	std::vector<std::list<Ptr<Renderable>>> m_RenderableArries;
 private:

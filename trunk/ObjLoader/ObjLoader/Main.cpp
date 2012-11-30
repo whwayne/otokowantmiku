@@ -5,6 +5,9 @@
 #include "D3D9Device.h"
 #include "D3D9VertexBuffer.h"
 #include "D3D9Mesh.h"
+#include "FixedRenderer.h"
+#include "FixedRenderPipeline.h"
+#include "MeshRenderable.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
@@ -12,6 +15,10 @@ LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
 ObjLoader* obj;
 D3D9Mesh* pMesh;
+
+Renderable* pRenderable;
+FixedRenderPipeline* pfixedPileline;
+Renderer*   pRenderer;
 
 void InitGeometry()
 {
@@ -21,6 +28,19 @@ void InitGeometry()
 	pMesh = new D3D9Mesh();
 
 	pMesh->SetUp(*obj);
+
+	
+	pfixedPileline = new FixedRenderPipeline();
+	pfixedPileline->Init();
+	
+	pRenderer = new FixedRenderer();
+	pRenderable = new MeshRenderable();
+	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
+	pMeshRenderable->SetRender(pRenderer);
+	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
+
+
+	pfixedPileline->GetRenderableList(COMMONTYPE).push_back(pRenderable);
 }
 
 HRESULT InitD3D( HWND hWnd )
@@ -78,13 +98,16 @@ VOID Render()
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
 
-		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetSubMeshArray()[1]->GetIndexBuffer()->GetD3D9IndexBufferPtr());
- 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetSubMeshArray()[1]->GetVertexBuffer()->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
- 		 D3D9Device::GetInstance().GetD3DDevice9()->SetFVF( D3DFVF_CUSTOMVERTEX );
- 		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[1].mVertexIndexBuffer.size()/3 );
+// 		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetSubMeshArray()[1]->GetIndexBuffer()->GetD3D9IndexBufferPtr());
+//  		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetSubMeshArray()[1]->GetVertexBuffer()->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
+//  		 D3D9Device::GetInstance().GetD3DDevice9()->SetFVF( D3DFVF_CUSTOMVERTEX );
+//  		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[1].mVertexIndexBuffer.size()/3 );
+// 
+// 
+// 		  D3D9Device::GetInstance().GetD3DDevice9()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,obj->GetContent()[1].mVertexBuffer.size()/8,0,obj->GetContent()[1].mVertexIndexBuffer.size()/3);	  
+		  
+		 pfixedPileline->RenderRenderables();
 
-
-		  D3D9Device::GetInstance().GetD3DDevice9()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,obj->GetContent()[1].mVertexBuffer.size()/8,0,obj->GetContent()[1].mVertexIndexBuffer.size()/3);
 
 		// End the scene
 		 D3D9Device::GetInstance().GetD3DDevice9()->EndScene();
