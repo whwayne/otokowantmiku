@@ -32,9 +32,28 @@ public:
 		return m_pIB;
 	}
 
+	void SetIndexCount(int count)
+	{
+		m_IndexCount = count;
+	}
+	int GetIndexCount()
+	{
+		return m_IndexCount;
+	}
+
+	void SetVertexCount(int count)
+	{
+		 m_VertexCount = count;
+	}
+	int GetVertexCount()
+	{
+		return m_VertexCount;
+	}
 protected:
 	Ptr<D3D9VertexBuffer> m_pVB;
 	Ptr<D3D9IndexBuffer>  m_pIB;
 
+	int m_VertexCount;
+	int m_IndexCount;
 private:
 };

@@ -57,6 +57,8 @@ bool D3D9Mesh::SetUp(Loader& loader)
 
 		pSubMesh->SetIndexBuffer(pIB);
 		pSubMesh->SetVertexBuffer(pVB);
+		pSubMesh->SetIndexCount(content[iSubMesh].mVertexIndexBuffer.size()/3);
+		pSubMesh->SetVertexCount(vertexCount);
 		m_pSubMeshArray.push_back(pSubMesh);
 	}
 	return true;
