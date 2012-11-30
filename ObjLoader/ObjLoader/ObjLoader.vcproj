@@ -307,6 +307,58 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="RenderPipeLine"
+				>
+				<File
+					RelativePath=".\FixedRenderer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\FixedRenderer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\FixedRenderPipeline.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\FixedRenderPipeline.h"
+					>
+				</File>
+				<File
+					RelativePath=".\MeshRenderable.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MeshRenderable.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Renderable.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Renderable.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Renderer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Renderer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\RenderPipeline.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\RenderPipeline.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="FrameWork"
