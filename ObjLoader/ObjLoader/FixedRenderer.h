@@ -12,6 +12,5 @@ public:
 	virtual void Render(Renderable& rdable);
 protected:
 	
-	Ptr<Renderable> m_pRenderable;
 private:
 };

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Renderer.h"
 #include "Renderable.h"
 #include "D3D9SubMesh.h"
 
@@ -22,5 +22,5 @@ public:
 	}
 protected:
 	Ptr<D3D9SubMesh> m_pSubMesh;
-
+	
 };
