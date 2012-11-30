@@ -68,12 +68,6 @@ VOID Render()
 	D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );
 	 D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_VIEW, &matView );
 
-	// For the projection matrix, we set up a perspective transform (which
-	// transforms geometry from 3D view space to 2D viewport space, with
-	// a perspective divide making objects smaller in the distance). To build
-	// a perpsective transform, we need the field of view (1/4 pi is common),
-	// the aspect ratio, and the near and far clipping planes (which define at
-	// what distances geometry should be no longer be rendered).
 	D3DXMATRIXA16 matProj;
 	D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f );
 	 D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_PROJECTION, &matProj );
@@ -84,8 +78,8 @@ VOID Render()
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
 
-		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetIBArray()[1]->GetD3D9IndexBufferPtr());
- 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetVBArray()[1]->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
+		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetSubMeshArray()[1]->GetIndexBuffer()->GetD3D9IndexBufferPtr());
+ 		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetSubMeshArray()[1]->GetVertexBuffer()->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
  		 D3D9Device::GetInstance().GetD3DDevice9()->SetFVF( D3DFVF_CUSTOMVERTEX );
  		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[1].mVertexIndexBuffer.size()/3 );
 

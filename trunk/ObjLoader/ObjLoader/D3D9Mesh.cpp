@@ -2,8 +2,7 @@
 
 
 D3D9Mesh::D3D9Mesh()
-	:m_pVBArray()
-	,m_pIBArray()
+	:m_pSubMeshArray()
 {
 
 }
@@ -31,7 +30,7 @@ bool D3D9Mesh::SetUp(Loader& loader)
 		Ptr<D3D9VertexBuffer> pVB = new D3D9VertexBuffer();
 		Ptr<D3D9IndexBuffer> pIB = new D3D9IndexBuffer();
 
-
+		Ptr<D3D9SubMesh> pSubMesh = new D3D9SubMesh();
 		int vertexCount = content[iSubMesh].mVertexBuffer.size()/8;
 
 		if( FAILED( D3D9Device::GetInstance().GetD3DDevice9()->CreateVertexBuffer(vertexCount*sizeof( CUSTOMVERTEX ),
@@ -56,8 +55,9 @@ bool D3D9Mesh::SetUp(Loader& loader)
 		memcpy(pIndex,&content[iSubMesh].mVertexIndexBuffer[0],content[iSubMesh].mVertexIndexBuffer.size()*sizeof( int ));
 		pIB->GetD3D9IndexBufferPtr()->Unlock();
 
-		m_pVBArray.push_back(pVB);
-		m_pIBArray.push_back(pIB);
+		pSubMesh->SetIndexBuffer(pIB);
+		pSubMesh->SetVertexBuffer(pVB);
+		m_pSubMeshArray.push_back(pSubMesh);
 	}
 	return true;
 	

@@ -298,6 +298,14 @@
 					RelativePath=".\D3D9Mesh.h"
 					>
 				</File>
+				<File
+					RelativePath=".\D3D9SubMesh.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\D3D9SubMesh.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -319,6 +327,18 @@
 				RelativePath=".\Res.h"
 				>
 			</File>
+			<Filter
+				Name="Message"
+				>
+				<File
+					RelativePath=".\Message.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Message.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="IO"
