@@ -367,6 +367,22 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Manager"
+				>
+				<File
+					RelativePath=".\GraphicMgr.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\GraphicMgr.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Culling"
+				>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="FrameWork"

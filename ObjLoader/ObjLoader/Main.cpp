@@ -6,8 +6,9 @@
 #include "D3D9VertexBuffer.h"
 #include "D3D9Mesh.h"
 #include "FixedRenderer.h"
-#include "FixedRenderPipeline.h"
 #include "MeshRenderable.h"
+
+#include "GraphicMgr.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
@@ -17,7 +18,6 @@ ObjLoader* obj;
 D3D9Mesh* pMesh;
 
 Renderable* pRenderable;
-FixedRenderPipeline* pfixedPileline;
 Renderer*   pRenderer;
 
 void InitGeometry()
@@ -30,9 +30,10 @@ void InitGeometry()
 	pMesh->SetUp(*obj);
 
 	
-	pfixedPileline = new FixedRenderPipeline();
-	pfixedPileline->Init();
+
 	
+	GraphicMgr::GetInstance().Init();
+
 	pRenderer = new FixedRenderer();
 	pRenderable = new MeshRenderable();
 	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
@@ -40,7 +41,7 @@ void InitGeometry()
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
 
 
-	pfixedPileline->GetRenderableList(COMMONTYPE).push_back(pRenderable);
+	GraphicMgr::GetInstance().GetRenderableList(COMMONTYPE).push_back(pRenderable);
 }
 
 HRESULT InitD3D( HWND hWnd )
@@ -97,18 +98,7 @@ VOID Render()
 	// Begin the scene
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
-
-// 		 D3D9Device::GetInstance().GetD3DDevice9()->SetIndices(pMesh->GetSubMeshArray()[1]->GetIndexBuffer()->GetD3D9IndexBufferPtr());
-//  		 D3D9Device::GetInstance().GetD3DDevice9()->SetStreamSource( 0, pMesh->GetSubMeshArray()[1]->GetVertexBuffer()->GetD3D9VertexBufferPtr(), 0, sizeof( CUSTOMVERTEX ) );
-//  		 D3D9Device::GetInstance().GetD3DDevice9()->SetFVF( D3DFVF_CUSTOMVERTEX );
-//  		// D3D9Device::GetInstance().GetD3DDevice9()->DrawPrimitive( D3DPT_TRIANGLELIST, 0, obj->GetContent()[1].mVertexIndexBuffer.size()/3 );
-// 
-// 
-// 		  D3D9Device::GetInstance().GetD3DDevice9()->DrawIndexedPrimitive(D3DPT_TRIANGLELIST,0,0,obj->GetContent()[1].mVertexBuffer.size()/8,0,obj->GetContent()[1].mVertexIndexBuffer.size()/3);	  
-		  
-		 pfixedPileline->RenderRenderables();
-
-
+		GraphicMgr::GetInstance().OnFrame(0.001f);
 		// End the scene
 		 D3D9Device::GetInstance().GetD3DDevice9()->EndScene();
 	}
