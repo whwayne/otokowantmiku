@@ -1,6 +1,6 @@
 #pragma once
 #include <Windows.h>
-
+#include "Memory.h"
 
 
 
@@ -25,7 +25,7 @@ public:
 		m_Ref--;
 		if (m_Ref==0)
 		{
-			delete this;
+			o_delete( this);
 		}
 	}
 

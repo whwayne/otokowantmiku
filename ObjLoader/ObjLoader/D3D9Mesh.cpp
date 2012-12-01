@@ -27,10 +27,10 @@ bool D3D9Mesh::SetUp(Loader& loader)
 
 	for (int iSubMesh = 0; iSubMesh<content.size(); iSubMesh++)
 	{
-		Ptr<D3D9VertexBuffer> pVB = new D3D9VertexBuffer();
-		Ptr<D3D9IndexBuffer> pIB = new D3D9IndexBuffer();
+		Ptr<D3D9VertexBuffer> pVB = o_new( D3D9VertexBuffer);
+		Ptr<D3D9IndexBuffer> pIB = o_new( D3D9IndexBuffer);
 
-		Ptr<D3D9SubMesh> pSubMesh = new D3D9SubMesh();
+		Ptr<D3D9SubMesh> pSubMesh = o_new( D3D9SubMesh);
 		int vertexCount = content[iSubMesh].mVertexBuffer.size()/8;
 
 		if( FAILED( D3D9Device::GetInstance().GetD3DDevice9()->CreateVertexBuffer(vertexCount*sizeof( CUSTOMVERTEX ),

@@ -1,8 +1,10 @@
 #include "GraphicMgr.h"
 #include "FixedRenderPipeline.h"
+#include "FixedRenderer.h"
 
 GraphicMgr::GraphicMgr()
 	:m_pPipeline(NULL)
+	,m_pRenderer(NULL)
 	,m_RenderableArries()
 {
 
@@ -12,15 +14,23 @@ GraphicMgr::~GraphicMgr()
 {
 	if (m_pPipeline)
 	{
-		delete m_pPipeline;
+		o_delete(m_pPipeline);
+		m_pPipeline = NULL;
+	}
+	if (m_pRenderer)
+	{
+		o_delete(m_pRenderer);
+		m_pRenderer = NULL;
 	}
 }
 
 void GraphicMgr::Init()
 {
 	// here we will init the current pipeline and cull sys;
-	m_pPipeline = new FixedRenderPipeline();
+	m_pPipeline = o_new(FixedRenderPipeline);
 	m_pPipeline->Init();
+
+	m_pRenderer = o_new(FixedRenderer);//hack
 	for (int i = 0;i<RENDERTYPECOUNT;i++)
 	{
 		m_RenderableArries.push_back(std::list<Ptr<Renderable>>());
