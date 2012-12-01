@@ -1,6 +1,7 @@
 #pragma once
+#include "Memory.h"
 #include "RenderPipeline.h"
-
+#include "Renderer.h"
 class GraphicMgr
 {
 public:
@@ -19,12 +20,17 @@ public:
 	{
 		return m_RenderableArries[type];
 	}
-
+	Renderer* GetRenderer()
+	{
+		return m_pRenderer;
+	}
 protected:
 
 	GraphicMgr();
 	std::vector<std::list<Ptr<Renderable>>> m_RenderableArries;
 
 	RenderPipeline* m_pPipeline;
+
+	Renderer*       m_pRenderer;
 private:
 };

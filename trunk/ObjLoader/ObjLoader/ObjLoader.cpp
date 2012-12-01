@@ -33,7 +33,7 @@ ObjLoader::~ObjLoader()
 
 }
 
-void ObjLoader::LoadFromFile( std::string& path )
+void ObjLoader::LoadFromFile(const std::string& path )
 {
 
 	std::vector<VertexCacheUnit> vertexCache;
@@ -44,7 +44,7 @@ void ObjLoader::LoadFromFile( std::string& path )
 
 	DWORD dwBytesRead = 0;
 
-	void* ReadBuffer = new char[fileSize+1];
+	void* ReadBuffer = o_newArray(char,fileSize+1);
 	ReadFile(hFile,ReadBuffer, fileSize+1, &dwBytesRead, NULL);
 
 	int iSubMeshIndex = -1;
@@ -160,5 +160,5 @@ void ObjLoader::LoadFromFile( std::string& path )
 		}
 		lastHead = strUnits[0];
 	}
-	delete[] ReadBuffer;
+	o_deleteArray(ReadBuffer);
 }

@@ -195,6 +195,26 @@
 				RelativePath=".\ResourceMgr.h"
 				>
 			</File>
+			<Filter
+				Name="ResGenerator"
+				>
+				<File
+					RelativePath=".\MeshResGenerator.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\MeshResGenerator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ResGenerator.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ResGenerator.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Util"
@@ -414,6 +434,22 @@
 					RelativePath=".\Message.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="Memory"
+				>
+				<File
+					RelativePath=".\Memory.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Memory.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Thread"
+				>
 			</Filter>
 		</Filter>
 		<Filter

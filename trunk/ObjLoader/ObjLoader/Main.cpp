@@ -1,14 +1,11 @@
 
 #include <Windows.h>
 #include <stdio.h>
-#include "ObjLoader.h"
-#include "D3D9Device.h"
-#include "D3D9VertexBuffer.h"
-#include "D3D9Mesh.h"
-#include "FixedRenderer.h"
-#include "MeshRenderable.h"
 
+#include "D3D9Device.h"
+#include "MeshRenderable.h"
 #include "GraphicMgr.h"
+#include "ResourceMgr.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
@@ -18,26 +15,17 @@ ObjLoader* obj;
 D3D9Mesh* pMesh;
 
 Renderable* pRenderable;
-Renderer*   pRenderer;
+
 
 void InitGeometry()
 {
-	obj = new ObjLoader();
-	obj->LoadFromFile(std::string("cup.obj"));
-
-	pMesh = new D3D9Mesh();
-
-	pMesh->SetUp(*obj);
-
-	
-
-	
 	GraphicMgr::GetInstance().Init();
 
-	pRenderer = new FixedRenderer();
+	pMesh = (D3D9Mesh*)ResourceMgr::GetInstance().GetResByID<MeshResGenerator>(std::string("cup.obj")).get();
+	
 	pRenderable = new MeshRenderable();
 	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
-	pMeshRenderable->SetRender(pRenderer);
+	pMeshRenderable->SetRender(GraphicMgr::GetInstance().GetRenderer());
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
 
 
@@ -112,6 +100,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 	switch( msg )
 	{
 	case WM_DESTROY:
+
 		PostQuitMessage( 0 );
 		return 0;
 	}
