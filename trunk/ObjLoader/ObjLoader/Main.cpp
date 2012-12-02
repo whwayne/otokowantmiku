@@ -7,14 +7,20 @@
 #include "GraphicMgr.h"
 #include "ResourceMgr.h"
 
+
+#include "D3D9Texture.h"
+#include "TexLoader.h"
+
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
 
 
-ObjLoader* obj;
+
 D3D9Mesh* pMesh;
 
 Renderable* pRenderable;
+TexLoader* pTexLoader;
+D3D9Texture* pTex;
 
 
 void InitGeometry()
@@ -27,9 +33,13 @@ void InitGeometry()
 	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
 	pMeshRenderable->SetRender(GraphicMgr::GetInstance().GetRenderer());
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
-
-
+	pTexLoader = o_new(TexLoader);
+	pTexLoader->LoadFromFile(std::string("Tiny_skin.dds"));
+	pTex = o_new(D3D9Texture);
+	pTex->SetUp(*pTexLoader);
+	o_delete(pTexLoader);
 	GraphicMgr::GetInstance().GetRenderableList(COMMONTYPE).push_back(pRenderable);
+
 }
 
 HRESULT InitD3D( HWND hWnd )
@@ -56,7 +66,7 @@ HRESULT InitD3D( HWND hWnd )
 		return E_FAIL;
 	}
 	// Turn off culling
-	D3D9Device::GetInstance().GetD3DDevice9()->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
+	D3D9Device::GetInstance().GetD3DDevice9()->SetRenderState( D3DRS_CULLMODE, D3DCULL_CCW );
 
 	// Turn off D3D lighting
 	D3D9Device::GetInstance().GetD3DDevice9()->SetRenderState( D3DRS_LIGHTING, FALSE );
@@ -86,9 +96,11 @@ VOID Render()
 	// Begin the scene
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
+		D3D9Device::GetInstance().GetD3DDevice9()->SetTexture(0,pTex->GetD3D9TexturePtr());
+
 		GraphicMgr::GetInstance().OnFrame(0.001f);
 		// End the scene
-		 D3D9Device::GetInstance().GetD3DDevice9()->EndScene();
+		D3D9Device::GetInstance().GetD3DDevice9()->EndScene();
 	}
 
 	// Present the backbuffer contents to the display

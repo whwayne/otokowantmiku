@@ -3,6 +3,7 @@
 #include "D3D9Device.h"
 #include "D3D9VertexBuffer.h"
 #include "D3D9IndexBuffer.h"
+#include "D3D9VertexLayout.h"
 #include "ObjLoader.h"
 #include "Ptr.h"
 
@@ -22,6 +23,11 @@ public:
 		m_pIB = pIB;
 	}
 
+	void SetVertexLayout(Ptr<D3D9VertexLayout> pVL)
+	{
+		m_pVL = pVL;
+	}
+
 	Ptr<D3D9VertexBuffer> GetVertexBuffer()
 	{
 		return m_pVB;
@@ -30,6 +36,11 @@ public:
 	Ptr<D3D9IndexBuffer> GetIndexBuffer()
 	{
 		return m_pIB;
+	}
+
+	Ptr<D3D9VertexLayout> GetVertexLayout()
+	{
+		return m_pVL;
 	}
 
 	void SetIndexCount(int count)
@@ -52,6 +63,7 @@ public:
 protected:
 	Ptr<D3D9VertexBuffer> m_pVB;
 	Ptr<D3D9IndexBuffer>  m_pIB;
+	Ptr<D3D9VertexLayout> m_pVL;
 
 	int m_VertexCount;
 	int m_IndexCount;

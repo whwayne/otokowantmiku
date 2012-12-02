@@ -1,6 +1,7 @@
 #pragma once
 #include "Loader.h"
 #include "Memory.h"
+#include "D3D9VertexComponent.h"
 #include <d3d9.h>
 #include <d3dx9.h>
 #include <Windows.h>
@@ -18,6 +19,7 @@ struct ObjSubMeshContent
 	std::vector<float> mVertexNormal;
 	std::vector<int> mVertexIndexBuffer;
 	std::vector<float> mVertexBuffer;
+	std::vector<D3D9VertexComponent::Type> mVertexLayout;
 };
 
 
