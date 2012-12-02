@@ -230,10 +230,6 @@
 			<Filter
 				Name="Math"
 				>
-				<File
-					RelativePath=".\Float3.h"
-					>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -411,18 +407,6 @@
 		<Filter
 			Name="Foundtion"
 			>
-			<File
-				RelativePath=".\Ptr.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Ptr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Res.h"
-				>
-			</File>
 			<Filter
 				Name="Message"
 				>
@@ -450,6 +434,54 @@
 			<Filter
 				Name="Thread"
 				>
+			</Filter>
+			<Filter
+				Name="Sys"
+				>
+				<File
+					RelativePath=".\Ptr.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Ptr.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Res.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Math"
+				>
+				<File
+					RelativePath=".\Float2.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Float3.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Float4.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Matrix44.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="CoustomisedContainers"
+				>
+				<File
+					RelativePath=".\HashDic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\OctTree.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
