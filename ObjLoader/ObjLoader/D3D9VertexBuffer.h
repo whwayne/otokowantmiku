@@ -12,7 +12,7 @@ struct CUSTOMVERTEX
 };
 
 // Our custom FVF, which describes our custom vertex structure
-#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_TEX0|D3DFVF_NORMAL)
+#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX0)
 
 
 

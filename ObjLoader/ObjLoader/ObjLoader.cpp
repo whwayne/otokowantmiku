@@ -134,20 +134,22 @@ void ObjLoader::LoadFromFile(const std::string& path )
 				}
 				else
 				{
+					mSubMeshContent[iSubMeshIndex].mVertexLayout.clear();
 					//- if vertex can't be found ,create a new one and push it into the cache. 
 					//- POS
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexPos[vPosIndex*3]);
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexPos[vPosIndex*3+1]);
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexPos[vPosIndex*3+2]);
-				
+					mSubMeshContent[iSubMeshIndex].mVertexLayout.push_back(D3D9VertexComponent::COM_POSITION);
 					//-NORMAL
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexNormal[vNormalIndex*3]);
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexNormal[vNormalIndex*3+1]);
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexNormal[vNormalIndex*3+1]);
-
+				    mSubMeshContent[iSubMeshIndex].mVertexLayout.push_back(D3D9VertexComponent::COM_NORMAL);
 					//-UV
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexUV[vUVIndex*2]);
 					mSubMeshContent[iSubMeshIndex].mVertexBuffer.push_back(mSubMeshContent[iSubMeshIndex].mVertexUV[vUVIndex*2+1]);
+					mSubMeshContent[iSubMeshIndex].mVertexLayout.push_back(D3D9VertexComponent::COM_UV);
 					
 					//- storge a vertex for the check later
 					vertexCache.push_back(chace);

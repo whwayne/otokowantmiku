@@ -29,6 +29,7 @@ bool D3D9Mesh::SetUp(Loader& loader)
 	{
 		Ptr<D3D9VertexBuffer> pVB = o_new( D3D9VertexBuffer);
 		Ptr<D3D9IndexBuffer> pIB = o_new( D3D9IndexBuffer);
+		Ptr<D3D9VertexLayout> pVL = o_new( D3D9VertexLayout);
 
 		Ptr<D3D9SubMesh> pSubMesh = o_new( D3D9SubMesh);
 		int vertexCount = content[iSubMesh].mVertexBuffer.size()/8;
@@ -49,14 +50,20 @@ bool D3D9Mesh::SetUp(Loader& loader)
 		{
 			return false;
 		}
-
 		int* pIndex ;
 		pIB->GetD3D9IndexBufferPtr()->Lock(0, 0,( void** )&pIndex, 0 );
 		memcpy(pIndex,&content[iSubMesh].mVertexIndexBuffer[0],content[iSubMesh].mVertexIndexBuffer.size()*sizeof( int ));
 		pIB->GetD3D9IndexBufferPtr()->Unlock();
 
+		for (int i = 0;i<content[iSubMesh].mVertexLayout.size();i++)
+		{
+			D3D9VertexComponent com(content[iSubMesh].mVertexLayout[i]);
+			pVL->AddComponent(com);
+		}
+		pVL->SetUp();
 		pSubMesh->SetIndexBuffer(pIB);
 		pSubMesh->SetVertexBuffer(pVB);
+		pSubMesh->SetVertexLayout(pVL);
 		pSubMesh->SetIndexCount(content[iSubMesh].mVertexIndexBuffer.size()/3);
 		pSubMesh->SetVertexCount(vertexCount);
 		m_pSubMeshArray.push_back(pSubMesh);
