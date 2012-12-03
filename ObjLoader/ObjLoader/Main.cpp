@@ -11,6 +11,10 @@
 #include "D3D9Texture.h"
 #include "TexLoader.h"
 
+#include "Thread.h"
+#include "CriticalSection.h"
+#include "Event.h"
+
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
 
