@@ -216,6 +216,22 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Ansyc"
+				>
+				<File
+					RelativePath=".\AnsycGenerator.h"
+					>
+				</File>
+				<File
+					RelativePath=".\LoaderThread.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\LoaderThread.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Util"
