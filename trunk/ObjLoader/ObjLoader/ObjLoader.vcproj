@@ -471,6 +471,22 @@
 			<Filter
 				Name="Thread"
 				>
+				<File
+					RelativePath=".\CriticalSection.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Event.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Thread.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Thread.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Sys"
