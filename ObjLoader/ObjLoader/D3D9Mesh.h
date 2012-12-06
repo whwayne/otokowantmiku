@@ -13,14 +13,25 @@ public:
 	
 	virtual bool SetUp(Loader& loader);
 
+	virtual void Copy(D3D9Res& rhs);
 
-
-	std::vector<Ptr<D3D9SubMesh>>& GetSubMeshArray()
+// 	std::vector<Ptr<D3D9SubMesh>>& GetSubMeshArray()
+// 	{
+// 		return m_pSubMeshArray;
+// 	}
+	Ptr<D3D9SubMesh>* GetSubMeshArray()
 	{
-		return m_pSubMeshArray;
+		return m_pSubMeshPtrArray;
+	}
+
+	int GetSubMeshCount()
+	{
+		return m_SubMeshCount;
 	}
 protected:
 	
-	std::vector<Ptr<D3D9SubMesh>>      m_pSubMeshArray;
+	Ptr<D3D9SubMesh>*   m_pSubMeshPtrArray;
+	int                 m_SubMeshCount;
+	//std::vector<Ptr<D3D9SubMesh>>      m_pSubMeshArray;
 private:
 };

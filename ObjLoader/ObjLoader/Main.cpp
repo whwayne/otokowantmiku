@@ -31,9 +31,31 @@ void InitGeometry()
 {
 	GraphicMgr::GetInstance().Init();
 
-	pMesh = (D3D9Mesh*)ResourceMgr::GetInstance().GetResByID<MeshResGenerator>(std::string("cup.obj")).get();
+	//pMesh = (D3D9Mesh*)ResourceMgr::GetInstance().GetResByID<MeshResGenerator>(std::string("cup.obj")).get();
 	
+	pMesh = (D3D9Mesh*)	ResourceMgr::GetInstance().GetResAnsycByID<ObjLoader,D3D9Mesh>(std::string("cup.obj")).get();
+
 	pRenderable = new MeshRenderable();
+
+
+}
+
+void OnFrame()
+{
+	static bool loaded = false;
+	if (pMesh->GetSubMeshCount()  <=0 )
+	{
+		return;
+	}
+	if (loaded==false)
+	{
+		loaded = true;
+	}
+	else
+	{
+		return;
+	}
+
 	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
 	pMeshRenderable->SetRender(GraphicMgr::GetInstance().GetRenderer());
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
@@ -43,7 +65,6 @@ void InitGeometry()
 	pTex->SetUp(*pTexLoader);
 	o_delete(pTexLoader);
 	GraphicMgr::GetInstance().GetRenderableList(COMMONTYPE).push_back(pRenderable);
-
 }
 
 HRESULT InitD3D( HWND hWnd )
@@ -84,6 +105,8 @@ HRESULT InitD3D( HWND hWnd )
 
 VOID Render()
 {
+	ResourceMgr::GetInstance().OnBeginFrame();
+	OnFrame();
 	D3DXVECTOR3 vEyePt( 0.0f, 3.0f,-5.0f );
 	D3DXVECTOR3 vLookatPt( 0.0f, 0.0f, 0.0f );
 	D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
@@ -100,7 +123,7 @@ VOID Render()
 	// Begin the scene
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
-		D3D9Device::GetInstance().GetD3DDevice9()->SetTexture(0,pTex->GetD3D9TexturePtr());
+		//D3D9Device::GetInstance().GetD3DDevice9()->SetTexture(0,pTex->GetD3D9TexturePtr());
 
 		GraphicMgr::GetInstance().OnFrame(0.001f);
 		// End the scene
@@ -147,6 +170,8 @@ int main()
 	// Show the window
 	ShowWindow( hWnd, SW_SHOWDEFAULT );
 	UpdateWindow( hWnd );
+
+	LoaderThread::GetInstance().Start();
 
 	//load
 	InitGeometry();
