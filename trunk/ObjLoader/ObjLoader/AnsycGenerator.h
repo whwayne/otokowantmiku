@@ -1,4 +1,4 @@
-#pragma 
+#pragma once
 #include <string>
 #include "Memory.h"
 #include "Loader.h"
@@ -28,15 +28,10 @@ public:
 	}
 	virtual ~AnsycGenerator()
 	{
-		
+		// do not delete the res ptr, because the main thread is using it now!
 	}
 
-	Loader* GetLoader()
-	{
-		return m_pLoader;
-	}
-
-	void GetRes()
+	tRes* GetRes()
 	{
 		return m_pRes;
 	}

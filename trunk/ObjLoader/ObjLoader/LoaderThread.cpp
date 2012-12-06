@@ -26,7 +26,7 @@ void LoaderThread::DoWork()
 		std::list<ResGenerator*>::iterator iter = m_pResGeneratorList.begin();
 		m_CriticalSection.Leave();
 
-		(*iter)->GeneratorRes(NULL);
+		(*iter)->GeneratorRes(std::string(""));
 
 		m_CriticalSection.Enter();
 		m_pResGeneratorList.erase(iter);

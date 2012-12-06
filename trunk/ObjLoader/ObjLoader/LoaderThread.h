@@ -8,7 +8,11 @@
 class LoaderThread:public Thread
 {
 public:
-	LoaderThread();
+	static LoaderThread& GetInstance()
+	{
+		static LoaderThread instance;
+		return instance;
+	}
 	virtual ~LoaderThread();
 	
 	void PushResGenerator(ResGenerator* pResGenerator)
@@ -18,7 +22,7 @@ public:
 		m_CriticalSection.Leave();
 	}
 
-	//this function is used to pop a ResGenerator* out
+	//this function is used to pop a ResGenerator* out,this may not be needed.
 	ResGenerator* PopResGenerator(ResGenerator* pResGenerator)
 	{
 		m_CriticalSection.Enter();
@@ -40,4 +44,5 @@ protected:
 protected:
 	CriticalSection m_CriticalSection;
 private:
+	LoaderThread();
 };

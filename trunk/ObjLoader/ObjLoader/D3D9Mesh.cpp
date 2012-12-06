@@ -2,7 +2,8 @@
 
 
 D3D9Mesh::D3D9Mesh()
-	:m_pSubMeshArray()
+    :m_pSubMeshPtrArray(NULL)
+	,m_SubMeshCount(0)
 {
 
 }
@@ -10,7 +11,10 @@ D3D9Mesh::D3D9Mesh()
 
 D3D9Mesh::~D3D9Mesh()
 {
-
+	if (m_pSubMeshPtrArray)
+	{
+		o_deleteArray(m_pSubMeshPtrArray);
+	}
 }
 
 
@@ -24,8 +28,12 @@ bool D3D9Mesh::SetUp(Loader& loader)
 	{
 		return false;
 	}
+	m_SubMeshCount = content.size();
 
-	for (int iSubMesh = 0; iSubMesh<content.size(); iSubMesh++)
+	m_pSubMeshPtrArray = o_newArray(Ptr<D3D9SubMesh>,m_SubMeshCount);
+
+
+	for (int iSubMesh = 0; iSubMesh<m_SubMeshCount; iSubMesh++)
 	{
 		Ptr<D3D9VertexBuffer> pVB = o_new( D3D9VertexBuffer);
 		Ptr<D3D9IndexBuffer> pIB = o_new( D3D9IndexBuffer);
@@ -66,8 +74,17 @@ bool D3D9Mesh::SetUp(Loader& loader)
 		pSubMesh->SetVertexLayout(pVL);
 		pSubMesh->SetIndexCount(content[iSubMesh].mVertexIndexBuffer.size()/3);
 		pSubMesh->SetVertexCount(vertexCount);
-		m_pSubMeshArray.push_back(pSubMesh);
+	//	m_pSubMeshArray.push_back(pSubMesh);
+		m_pSubMeshPtrArray[iSubMesh] = pSubMesh;
+		
 	}
 	return true;
 	
+}
+
+void D3D9Mesh::Copy( D3D9Res& rhs )
+{
+	D3D9Mesh* pSource = (D3D9Mesh*)(&rhs);
+	this->m_SubMeshCount = pSource->m_SubMeshCount;
+	this->m_pSubMeshPtrArray = pSource->m_pSubMeshPtrArray;
 }
