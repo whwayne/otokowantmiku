@@ -30,7 +30,7 @@ void ResourceMgr::OnBeginFrame()
 			std::list<ResGenerator*>::iterator deleteIter = iter;
 			iter++;
 			m_pResGenWaitingList.erase(deleteIter);
-			delete pAG;
+			o_delete(pAG);
 		}
 		else
 		{

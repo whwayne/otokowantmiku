@@ -66,7 +66,8 @@ template<typename tLoader,typename tRes>
 void ResourceMgr::CreateResAnsyc( const std::string& path )
 {
 	//ResGenerator* pResGenerator= o_new2( AnsycGenerator<tLoader,tRes> );
-	ResGenerator* pResGenerator= new AnsycGenerator<tLoader,tRes> ();
+	typedef AnsycGenerator<tLoader,tRes> BaseAnsycGenerator;
+	ResGenerator* pResGenerator= o_new(BaseAnsycGenerator);
 	AnsycGenerator<tLoader,tRes>* pAnsycGenerator=(AnsycGenerator<tLoader,tRes>*)pResGenerator;
 	pAnsycGenerator->SetPath(path);
 	LoaderThread::GetInstance().PushResGenerator(pResGenerator);
