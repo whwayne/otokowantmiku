@@ -15,10 +15,11 @@
 #include "CriticalSection.h"
 #include "Event.h"
 
+#include "Float2.h"
+#include "Float3.h"
+#include "Float4.h"
+
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
-
-
-
 
 D3D9Mesh* pMesh;
 

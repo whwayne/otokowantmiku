@@ -536,15 +536,63 @@
 					>
 				</File>
 				<File
+					RelativePath=".\MathDefine.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Matrix44.h"
 					>
 				</File>
+				<Filter
+					Name="GemotryMath"
+					>
+					<File
+						RelativePath=".\AABBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\BSphere.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Frustum.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Frustum.h"
+						>
+					</File>
+					<File
+						RelativePath=".\InterSectUtil.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\InterSectUtil.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Plane.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\Plane.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Point.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Ray.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="CoustomisedContainers"
 				>
 				<File
-					RelativePath=".\HashDic.h"
+					RelativePath=".\HashTable.h"
 					>
 				</File>
 				<File
