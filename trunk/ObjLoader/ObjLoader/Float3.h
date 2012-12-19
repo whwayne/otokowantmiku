@@ -128,7 +128,7 @@ inline bool float3::operator!=( const float3& rhs ) const
 
 inline float3 float3::cross( const float3& v0, const float3& v1 )
 {
-	return float3( v0.mx*v1.mx, v0.my*v1.my, v0.mz*v1.mz );
+	return float3( v0.my*v1.mz - v0.mz*v1.my, v0.mz*v1.mx - v0.mx*v1.mz, v0.mx*v1.my - v0.my*v1.mx );
 }
 
 inline scalar float3::dot( const float3& v0, const float3& v1 )

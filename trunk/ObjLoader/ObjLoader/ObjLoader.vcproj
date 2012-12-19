@@ -451,6 +451,14 @@
 			<Filter
 				Name="Culling"
 				>
+				<File
+					RelativePath=".\VisCell.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\VisCell.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -546,6 +554,10 @@
 				<Filter
 					Name="GemotryMath"
 					>
+					<File
+						RelativePath=".\AABBox.cpp"
+						>
+					</File>
 					<File
 						RelativePath=".\AABBox.h"
 						>

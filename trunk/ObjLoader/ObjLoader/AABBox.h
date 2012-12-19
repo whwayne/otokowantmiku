@@ -14,21 +14,21 @@ protected:
 private:
 };
 
-aabbox::aabbox()
+inline aabbox::aabbox()
 	:mMax()
 	,mMin()
 {
 
 }
 
-aabbox::aabbox( aabbox& box )
+inline aabbox::aabbox( aabbox& box )
 	:mMax(box.mMax)
 	,mMin(box.mMin)
 {
 
 }
 
-aabbox::aabbox( point& max,point& min )
+inline aabbox::aabbox( point& max,point& min )
 	:mMax(max)
 	,mMin(min)
 {

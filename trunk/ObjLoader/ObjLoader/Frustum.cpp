@@ -1,6 +1,6 @@
 #include "Frustum.h"
 
-
+#include "OctTree.h"
 
 
 void Frustum::InterSect( aabbox& box )
