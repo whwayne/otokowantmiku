@@ -2,9 +2,8 @@
 #include "Point.h"
 #include "Plane.h"
 #include <vector>
+#include "AABBox.h"
 
-
-class aabbox;
 class Frustum
 {
 public:

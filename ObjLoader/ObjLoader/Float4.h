@@ -32,9 +32,9 @@ public:
 	bool operator!=(const float4& rhs) const;
 
 	/// return cross product
-	static float4 cross(const float4& v0, const float4& v1);
+	static float4 cross3(const float4& v0, const float4& v1);
 	/// return dot product of vectors
-	static scalar dot(const float4& v0, const float4& v1);
+	static scalar dot3(const float4& v0, const float4& v1);
 	/// return normalized version of 4d vector
 	static float4 normalize(const float4& v);
 
@@ -140,14 +140,14 @@ inline bool float4::operator!=( const float4& rhs ) const
 	return (mx!=rhs.mx)||(my!=rhs.my)||(mz!=rhs.mz)||(mw!=rhs.mw);
 }
 
-inline float4 float4::cross( const float4& v0, const float4& v1 )
+inline float4 float4::cross3( const float4& v0, const float4& v1 )
 {
-	return float4( v0.mx*v1.mx, v0.my*v1.my, v0.mz*v1.mz, v0.mw*v1.mw );
+	return float4( v0.my*v1.mz - v0.mz*v1.my, v0.mz*v1.mx - v0.mx*v1.mz, v0.mx*v1.my - v0.my*v1.mx, 0 );
 }
 
-inline scalar float4::dot( const float4& v0, const float4& v1 )
+inline scalar float4::dot3( const float4& v0, const float4& v1 )
 {
-	return v0.mx*v1.mx+ v0.my*v1.my+ v0.mz*v1.mz+ v0.mw*v1.mw;
+	return v0.mx*v1.mx+ v0.my*v1.my+ v0.mz*v1.mz;
 }
 
 inline scalar float4::length() const

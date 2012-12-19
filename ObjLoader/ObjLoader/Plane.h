@@ -70,7 +70,7 @@ Plane::Plane( point& ori,point& dir1,point& dir2 )
 ,C(0.f)
 ,D(0.f)
 {
-	float4 _normal = float4::cross(dir1,dir2);
+	float4 _normal = float4::cross3(dir1,dir2);
 	A = _normal.X();
 	B = _normal.Y();
 	C = _normal.Z();

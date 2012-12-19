@@ -18,6 +18,8 @@
 #include "Float2.h"
 #include "Float3.h"
 #include "Float4.h"
+#include "OctTree.h"
+//#include "AABBox.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
@@ -173,7 +175,8 @@ int main()
 	UpdateWindow( hWnd );
 
 	LoaderThread::GetInstance().Start();
-
+	
+	//OctTreeV<aabbox> oct(3);
 	//load
 	InitGeometry();
 	// Enter the message loop
