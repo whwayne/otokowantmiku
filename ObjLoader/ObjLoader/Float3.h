@@ -116,6 +116,13 @@ inline float3 float3::operator*( scalar s ) const
 	return float3(this->mx * s, this->my * s, this->mz * s);
 }
 
+inline void float3::operator*=( scalar s )
+{
+	mx*=s;
+	my*=s;
+	mz*=s;
+}
+
 inline bool float3::operator==( const float3& rhs ) const
 {
 	return (mx==rhs.mx)&&(my==rhs.my)&&(mz==rhs.mz);
