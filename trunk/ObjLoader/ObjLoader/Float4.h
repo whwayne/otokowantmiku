@@ -15,11 +15,11 @@ public:
 	/// flip sign
 	float4 operator-() const;
 	/// inplace add
-	void operator+=(const float4& rhs);
+	float4& operator+=(const float4& rhs);
 	/// inplace sub
-	void operator-=(const float4& rhs);
+	float4& operator-=(const float4& rhs);
 	/// inplace scalar multiply
-	void operator*=(scalar s);
+	float4& operator*=(scalar s);
 	/// add 2 vectors
 	float4 operator+(const float4& rhs) const;
 	/// subtract 2 vectors
@@ -97,20 +97,22 @@ inline float4 float4::operator-() const
 	 return float4(-this->mx,-this->my,-this->mz,-this->mw);
 }
 
-inline void float4::operator+=( const float4& rhs )
+inline float4& float4::operator+=( const float4& rhs )
 {
 	mx+=rhs.mx;
 	my+=rhs.my;
 	mz+=rhs.mz;
 	mw+=rhs.mw;
+	return *this;
 }
 
-inline void float4::operator-=( const float4& rhs )
+inline float4& float4::operator-=( const float4& rhs )
 {
 	mx-=rhs.mx;
 	my-=rhs.my;
 	mz-=rhs.mz;
 	mw-=rhs.mw;
+	return *this;
 }
 
 inline float4 float4::operator+( const float4& rhs ) const
@@ -128,6 +130,15 @@ inline float4 float4::operator-( const float4& rhs ) const
 inline float4 float4::operator*( scalar s ) const
 {
 	return float4(this->mx * s, this->my * s, this->mz * s, this->mw * s);
+}
+
+inline float4& float4::operator*=( scalar s )
+{
+	mx*=s;
+	my*=s;
+	mz*=s;
+	mw*=s;
+	return *this;
 }
 
 inline bool float4::operator==( const float4& rhs ) const

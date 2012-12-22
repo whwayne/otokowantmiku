@@ -1,5 +1,6 @@
 #pragma once
 #include "MathDefine.h"
+#include "float4.h"
 #include <assert.h>
 
 class matrix44
@@ -10,10 +11,8 @@ public:
 		scalar m00,scalar m01,scalar m02,scalar m03,
 		scalar m10,scalar m11,scalar m12,scalar m13,	 
 		scalar m20,scalar m21,scalar m22,scalar m23,
-		scalar m30,scalar m31,scalar m32,scalar m33,
+		scalar m30,scalar m31,scalar m32,scalar m33
 			);
-	matrix44(float4[4]& row);
-	matrix44(float4& row1,float4& row2,float4& row3,float4& row4);
 	matrix44(matrix44& m44);
 
     /** Check whether or not the matrix is affine matrix.
@@ -54,6 +53,14 @@ public:
     /** Matrix subtraction.
     */
     matrix44 operator - ( const matrix44 &m2 ) const;
+
+
+	inline scalar* operator [] ( size_t iRow );
+
+	inline const scalar *operator [] ( size_t iRow ) const;
+
+
+
 
 	matrix44 transpose() const;
 	
@@ -98,85 +105,129 @@ public:
 	matrix44 inverseAffine(void) const;
 
 protected:
-private:
 	union {
-		float4[4] mRow;
-		scalar m[16];
+		
+		
+		scalar _m[16];
+		scalar m[4][4];
 	};
-	
+
+private:
+
 };
 
 inline matrix44::matrix44()
-	:mRow[0](float4(1.0f,0.0f,0.0f,0.0f))
-	,mRow[1](float4(0.0f,1.0f,0.0f,0.0f))
-	,mRow[2](float4(0.0f,0.0f,1.0f,0.0f))
-	,mRow[3](float4(0.0f,0.0f,0.0f,1.0f))
 {
-
+	m[0][0] = 1.0f;
+	m[0][1] = 0.0f;
+	m[0][2] = 0.0f;
+	m[0][3] = 0.0f;
+	m[1][0] = 0.0f;
+	m[1][1] = 1.0f;
+	m[1][2] = 0.0f;
+	m[1][3] = 0.0f;
+	m[2][0] = 0.0f;
+	m[2][1] = 0.0f;
+	m[2][2] = 1.0f;
+	m[2][3] = 0.0f;
+	m[3][0] = 0.0f;
+	m[3][1] = 0.0f;
+	m[3][2] = 0.0f;
+	m[3][3] = 1.0f;
 }
 
 inline matrix44::matrix44( scalar m00,scalar m01,scalar m02,scalar m03, 
 				   scalar m10,scalar m11,scalar m12,scalar m13, 
 				   scalar m20,scalar m21,scalar m22,scalar m23, 
-				   scalar m30,scalar m31,scalar m32,scalar m33, )
-				   :mRow[0](float4(m00,m01,m02,m03))
-				   ,mRow[1](float4(m10,m11,m12,m13))
-				   ,mRow[2](float4(m20,m21,m22,m23))
-				   ,mRow[3](float4(m30,m31,m32,m33))
+				   scalar m30,scalar m31,scalar m32,scalar m33 )
 {
-
-}
-
-inline matrix44::matrix44( float4[4]& row )
-				:mRow[0](row[0])
-				,mRow[1](row[0])
-				,mRow[2](row[0])
-				,mRow[3](row[0])
-{
-
-}
-
-
-inline matrix44::matrix44( float4& row1,float4& row2,float4& row3,float4& row4 )
-:mRow[0](row1)
-,mRow[1](row2)
-,mRow[2](row3)
-,mRow[3](row4)
-{
-
+	m[0][0] = m00;
+	m[0][1] = m01;
+	m[0][2] = m02;
+	m[0][3] = m03;
+	m[1][0] = m10;
+	m[1][1] = m11;
+	m[1][2] = m12;
+	m[1][3] = m13;
+	m[2][0] = m20;
+	m[2][1] = m21;
+	m[2][2] = m22;
+	m[2][3] = m23;
+	m[3][0] = m30;
+	m[3][1] = m31;
+	m[3][2] = m32;
+	m[3][3] = m33;
 }
 
 
 inline matrix44::matrix44( matrix44& m44 )
-				:mRow(m44.mRow)
 {
-
+	m[0][0] = m44[0][0];
+	m[0][1] = m44[0][1];
+	m[0][2] = m44[0][2];
+	m[0][3] = m44[0][3];
+	m[1][0] = m44[1][0];
+	m[1][1] = m44[1][1];
+	m[1][2] = m44[1][2];
+	m[1][3] = m44[1][3];
+	m[2][0] = m44[2][0];
+	m[2][1] = m44[2][1];
+	m[2][2] = m44[2][2];
+	m[2][3] = m44[2][3];
+	m[3][0] = m44[3][0];
+	m[3][1] = m44[3][1];
+	m[3][2] = m44[3][2];
+	m[3][3] = m44[3][3];
 }
 
 __forceinline void
-matrix44::operator=(const matrix44& rhs)
+matrix44::operator=(const matrix44& m44)
 {
-	this->mRow[0] = rhs.mRow[0];
-	this->mRow[1] = rhs.mRow[1];
-	this->mRow[2] = rhs.mRow[2];
-	this->mRow[3] = rhs.mRow[3];
+	m[0][0] = m44[0][0];
+	m[0][1] = m44[0][1];
+	m[0][2] = m44[0][2];
+	m[0][3] = m44[0][3];
+	m[1][0] = m44[1][0];
+	m[1][1] = m44[1][1];
+	m[1][2] = m44[1][2];
+	m[1][3] = m44[1][3];
+	m[2][0] = m44[2][0];
+	m[2][1] = m44[2][1];
+	m[2][2] = m44[2][2];
+	m[2][3] = m44[2][3];
+	m[3][0] = m44[3][0];
+	m[3][1] = m44[3][1];
+	m[3][2] = m44[3][2];
+	m[3][3] = m44[3][3];
 }
 
 //------------------------------------------------------------------------------
 /**
 */
 __forceinline bool
-matrix44::operator==(const matrix44& rhs) const
+matrix44::operator==(const matrix44& m2) const
 {
-	return (this->mRow[0] == rhs.mRow[0]) && (this->mRow[1] == rhs.mRow[1]) && (this->mRow[2] == rhs.mRow[2]) && (this->mRow[3] == rhs.mRow[3]);
+	if( 
+		m[0][0] != m2.m[0][0] || m[0][1] != m2.m[0][1] || m[0][2] != m2.m[0][2] || m[0][3] != m2.m[0][3] ||
+		m[1][0] != m2.m[1][0] || m[1][1] != m2.m[1][1] || m[1][2] != m2.m[1][2] || m[1][3] != m2.m[1][3] ||
+		m[2][0] != m2.m[2][0] || m[2][1] != m2.m[2][1] || m[2][2] != m2.m[2][2] || m[2][3] != m2.m[2][3] ||
+		m[3][0] != m2.m[3][0] || m[3][1] != m2.m[3][1] || m[3][2] != m2.m[3][2] || m[3][3] != m2.m[3][3] )
+		return false;
+	return true;
 }
 //------------------------------------------------------------------------------
 /**
 */
 __forceinline bool
-matrix44::operator!=(const matrix44& rhs) const
+matrix44::operator!=(const matrix44& m2) const
 {
-	return (this->mRow[0] != rhs.mRow[0]) || (this->mRow[1] != rhs.mRow[1]) || (this->mRow[2] != rhs.mRow[2]) || (this->mRow[3] != rhs.mRow[3]);
+	if( 
+		m[0][0] != m2.m[0][0] || m[0][1] != m2.m[0][1] || m[0][2] != m2.m[0][2] || m[0][3] != m2.m[0][3] ||
+		m[1][0] != m2.m[1][0] || m[1][1] != m2.m[1][1] || m[1][2] != m2.m[1][2] || m[1][3] != m2.m[1][3] ||
+		m[2][0] != m2.m[2][0] || m[2][1] != m2.m[2][1] || m[2][2] != m2.m[2][2] || m[2][3] != m2.m[2][3] ||
+		m[3][0] != m2.m[3][0] || m[3][1] != m2.m[3][1] || m[3][2] != m2.m[3][2] || m[3][3] != m2.m[3][3] )
+		return true;
+	return false;
 }
 
 __forceinline matrix44
@@ -324,13 +375,13 @@ inline bool matrix44::hasScale() const
 {
 	// check magnitude of column vectors (==local axes)
 	scalar t = m[0][0] * m[0][0] + m[1][0] * m[1][0] + m[2][0] * m[2][0];
-	if (!RealEqual(t, 1.0, (scalar)1e-04))
+	if (!scalarEqual(t, 1.0, (scalar)1e-04))
 		return true;
 	t = m[0][1] * m[0][1] + m[1][1] * m[1][1] + m[2][1] * m[2][1];
-	if (!RealEqual(t, 1.0, (scalar)1e-04))
+	if (!scalarEqual(t, 1.0, (scalar)1e-04))
 		return true;
 	t = m[0][2] * m[0][2] + m[1][2] * m[1][2] + m[2][2] * m[2][2];
-	if (!RealEqual(t, 1.0, (scalar)1e-04))
+	if (!scalarEqual(t, 1.0, (scalar)1e-04))
 		return true;
 
 	return false;
@@ -440,4 +491,17 @@ inline matrix44 matrix44::inverseAffine( void ) const
 		r10, r11, r12, r13,
 		r20, r21, r22, r23,
 		0,   0,   0,   1);
+}
+
+inline scalar* matrix44::operator[]( size_t iRow )
+{
+	assert( iRow < 4 );
+	return m[iRow];
+}
+
+
+inline const scalar * matrix44::operator[]( size_t iRow ) const
+{
+	assert( iRow < 4 );
+	return m[iRow];
 }
