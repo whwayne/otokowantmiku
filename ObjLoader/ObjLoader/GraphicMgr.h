@@ -2,6 +2,9 @@
 #include "Memory.h"
 #include "RenderPipeline.h"
 #include "Renderer.h"
+#include "CullSystem.h"
+
+
 class GraphicMgr
 {
 public:
@@ -32,5 +35,7 @@ protected:
 	RenderPipeline* m_pPipeline;
 
 	Renderer*       m_pRenderer;
+
+	CullSystem*     m_pCullSystem;
 private:
 };

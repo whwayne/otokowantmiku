@@ -452,6 +452,14 @@
 				Name="Culling"
 				>
 				<File
+					RelativePath=".\CullSystem.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\CullSystem.h"
+					>
+				</File>
+				<File
 					RelativePath=".\VisCell.cpp"
 					>
 				</File>

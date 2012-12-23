@@ -30,6 +30,12 @@ public:
 	bool operator==(const float4& rhs) const;
 	/// inequality operator
 	bool operator!=(const float4& rhs) const;
+	/// larger operator
+	bool operator > (const float4& rhs) const;
+	/// smaller operator
+	bool operator < (const float4& rhs) const;
+
+
 
 	/// return cross product
 	static float4 cross3(const float4& v0, const float4& v1);
@@ -151,6 +157,16 @@ inline bool float4::operator!=( const float4& rhs ) const
 	return (mx!=rhs.mx)||(my!=rhs.my)||(mz!=rhs.mz)||(mw!=rhs.mw);
 }
 
+inline bool float4::operator>( const float4& rhs ) const
+{
+	return (mx>rhs.mx)&&(my>rhs.my)&&(mz>rhs.mz)&&(mw>rhs.mw);
+}
+
+inline bool float4::operator<( const float4& rhs ) const
+{
+	return (mx<rhs.mx)&&(my<rhs.my)&&(mz<rhs.mz)&&(mw<rhs.mw);
+}
+
 inline float4 float4::cross3( const float4& v0, const float4& v1 )
 {
 	return float4( v0.my*v1.mz - v0.mz*v1.my, v0.mz*v1.mx - v0.mx*v1.mz, v0.mx*v1.my - v0.my*v1.mx, 0 );
@@ -218,5 +234,7 @@ inline scalar& float4::W()
 {
 	return mw;
 }
+
+
 
 //------------------------------------------------------------------------------

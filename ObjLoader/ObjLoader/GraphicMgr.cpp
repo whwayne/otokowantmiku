@@ -5,6 +5,7 @@
 GraphicMgr::GraphicMgr()
 	:m_pPipeline(NULL)
 	,m_pRenderer(NULL)
+	,m_pCullSystem(NULL)
 	,m_RenderableArries()
 {
 
@@ -22,6 +23,11 @@ GraphicMgr::~GraphicMgr()
 		o_delete(m_pRenderer);
 		m_pRenderer = NULL;
 	}
+	if (m_pCullSystem)
+	{
+		o_delete(m_pCullSystem);
+		m_pCullSystem = NULL;
+	}
 }
 
 void GraphicMgr::Init()
@@ -35,6 +41,17 @@ void GraphicMgr::Init()
 	{
 		m_RenderableArries.push_back(std::list<Ptr<Renderable>>());
 	}
+
+
+	// here we will setup the culling system
+	m_pCullSystem = o_new(CullSystem);
+	m_pCullSystem->SetDepth(6);
+	aabbox cullArea;
+	cullArea.SetMax(point( 500.f, 500.f, 500.f,1.f));
+	cullArea.SetMin(point(-500.f,-500.f,-500.f,1.f));
+	m_pCullSystem->SetCullArea(cullArea);
+	m_pCullSystem->Init();
+
 }
 
 void GraphicMgr::OnFrame( float deltaTime )

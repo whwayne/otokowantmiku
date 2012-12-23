@@ -1,6 +1,6 @@
 #include "Quaternion.h"
 
-const scalar Quaternion::ms_fEpsilon = 1e-03;
+const scalar Quaternion::ms_fEpsilon =(scalar) 1e-03;
 const Quaternion Quaternion::ZERO(0.0,0.0,0.0,0.0);
 const Quaternion Quaternion::IDENTITY(1.0,0.0,0.0,0.0);
 

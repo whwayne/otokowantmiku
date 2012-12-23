@@ -12,20 +12,35 @@ public:
 	virtual ~TreeNode();
 
 	std::vector<TreeNode<NodeContent>*>& GetChildren();
-	TreeNode<NodeContent>& GetParent() const;
+	TreeNode<NodeContent>* GetParent() const;
 	void SetParent(TreeNode<NodeContent>* node);
 	void SetDepth(int d);
 	int  GetDepth();
 	void SetIndex(int i);
 	int  GetIndex();
+	NodeContent& GetContent() ;
+	void SetContent(NodeContent& content);
 protected:
 	std::vector< TreeNode<NodeContent>* > mpChildren;
 	TreeNode<NodeContent>* mpParent;
 	int mDepth;//start width 1
 	int mIndex;// start width 0
+	NodeContent mContent;
 private:
 
 };
+
+template<typename NodeContent>
+void TreeNode<NodeContent>::SetContent( NodeContent& content)
+{
+	mContent = content;
+}
+
+template<typename NodeContent>
+NodeContent& TreeNode<NodeContent>::GetContent() 
+{
+	return mContent;
+}
 
 template<typename NodeContent>
 int TreeNode<NodeContent>::GetIndex()
@@ -58,9 +73,9 @@ void TreeNode<NodeContent>::SetParent( TreeNode<NodeContent>* node )
 }
 
 template<typename NodeContent>
-TreeNode<NodeContent>& TreeNode<NodeContent>::GetParent() const
+TreeNode<NodeContent>* TreeNode<NodeContent>::GetParent() const
 {
-	return *mpParent;
+	return mpParent;
 }
 
 template<typename NodeContent>

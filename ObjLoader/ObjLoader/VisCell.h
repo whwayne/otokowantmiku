@@ -17,6 +17,11 @@ public:
 		return mRenderables;
 	}
 
+	void SetAABB(aabbox& box)
+	{
+		cellBox = box;
+	}
+
 	aabbox& GetAABB()
 	{
 		return cellBox;
