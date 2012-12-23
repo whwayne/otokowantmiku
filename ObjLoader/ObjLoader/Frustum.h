@@ -13,7 +13,7 @@ public:
 
 	virtual ~Frustum();
 
-	void InterSect(aabbox& box);
+	InterSectResult InterSect(aabbox& box);
 
 	bool InterSect(point& p);
 
