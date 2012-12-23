@@ -7,7 +7,15 @@ public:
 	aabbox();
 	aabbox(aabbox& box);
 	aabbox(point& max,point& min);
+	/// assignment operator
+	void operator=(const aabbox& rhs);
 
+	void   SetMax(point& max);
+	void   SetMin(point& min);
+	point& GetMax() ;
+	point& GetMin() ;
+
+	InterSectResult InterSect(aabbox& box);
 protected:
 	point mMax;
 	point mMin;
@@ -33,4 +41,32 @@ inline aabbox::aabbox( point& max,point& min )
 	,mMin(min)
 {
 
+}
+
+
+
+inline point& aabbox::GetMax() 
+{
+	return mMax;
+}
+
+inline point& aabbox::GetMin() 
+{
+	return mMin;
+}
+
+inline void aabbox::SetMax( point& max )
+{	
+	mMax = max;
+}
+
+inline void aabbox::SetMin( point& min )
+{
+	mMin = min;
+}
+
+inline void aabbox::operator=( const aabbox& rhs )
+{
+	mMax = rhs.mMax;
+	mMin = rhs.mMin;
 }

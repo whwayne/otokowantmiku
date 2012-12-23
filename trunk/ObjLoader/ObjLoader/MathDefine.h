@@ -3,6 +3,13 @@
 #include <math.h>
 #include <stdio.h>
 
+enum InterSectResult
+{
+	INTERSECTOUT = 0,
+	INTERSECTPART,
+	INTERSECTIN
+};
+
 typedef float scalar;
 
 #define o_abs(t) std::abs(t)
@@ -278,3 +285,4 @@ inline static scalar CosR(const Radian& fValue)
 {
 	return cosf(fValue.valueRadians());
 }
+

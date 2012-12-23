@@ -2,6 +2,7 @@
 #include "Ptr.h"
 #include "Res.h"
 #include "Renderer.h"
+#include "AABBox.h"
 
 //-parent class of all objs that can be rendered
 class Renderable:public Res
@@ -21,10 +22,17 @@ public:
 		return m_pRenderer;
 	}
 
-
+	aabbox& GetBBox()
+	{
+		return m_BBox;
+	}
+	void SetBBox(aabbox& box)
+	{
+		m_BBox = box;
+	}
 protected:
 	Renderer*  m_pRenderer;
-
-
+	
+	aabbox     m_BBox;
 private:
 };
