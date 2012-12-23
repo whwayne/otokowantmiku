@@ -1,5 +1,6 @@
 #pragma once
 #include "Point.h"
+#include <vector>
 
 class aabbox
 {
@@ -16,6 +17,8 @@ public:
 	point& GetMin() ;
 
 	InterSectResult InterSect(aabbox& box);
+
+	std::vector<point> FormPoint();
 protected:
 	point mMax;
 	point mMin;

@@ -1,13 +1,31 @@
 #include "Frustum.h"
-
 #include "OctTree.h"
 
-
-void Frustum::InterSect( aabbox& box )
+InterSectResult Frustum::InterSect( aabbox& box )
 {
-	
-}
+	std::vector<point> points = box.FormPoint();
 
+	int inPointCount = 0;
+	for (unsigned int i =0;i<points.size();i++ )
+	{
+		if ( InterSect(points[i]) )
+		{
+			inPointCount++;
+		}
+	}
+	if (inPointCount==8)
+	{
+		return INTERSECTIN;
+	}
+	else if (inPointCount==0)
+	{
+		return INTERSECTOUT;
+	}
+	else
+	{
+		return INTERSECTPART;
+	}
+}
 
 bool Frustum::InterSect( point& p )
 {
