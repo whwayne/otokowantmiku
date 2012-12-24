@@ -38,6 +38,13 @@ void InitGeometry()
 	
 	pMesh = (D3D9Mesh*)	ResourceMgr::GetInstance().GetResAnsycByID<ObjLoader,D3D9Mesh>(std::string("cup.obj")).get();
 
+	//pTex = (D3D9Texture*) ResourceMgr::GetInstance().GetResAnsycByID<TexLoader, D3D9Texture>(std::string("Tiny_skin.dds")).get();
+	pTexLoader = o_new(TexLoader);
+	pTexLoader->LoadFromFile(std::string("Tiny_skin.dds"));
+	pTex = o_new(D3D9Texture);
+	pTex->SetUp(*pTexLoader);
+	o_delete(pTexLoader);
+
 	pRenderable = new MeshRenderable();
 
 
@@ -62,11 +69,7 @@ void OnFrame()
 	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
 	pMeshRenderable->SetRender(GraphicMgr::GetInstance().GetRenderer());
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
-	pTexLoader = o_new(TexLoader);
-	pTexLoader->LoadFromFile(std::string("Tiny_skin.dds"));
-	pTex = o_new(D3D9Texture);
-	pTex->SetUp(*pTexLoader);
-	o_delete(pTexLoader);
+	
 	GraphicMgr::GetInstance().GetRenderableList(COMMONTYPE).push_back(pRenderable);
 }
 
@@ -126,7 +129,7 @@ VOID Render()
 	// Begin the scene
 	if( SUCCEEDED(  D3D9Device::GetInstance().GetD3DDevice9()->BeginScene() ) )
 	{
-		//D3D9Device::GetInstance().GetD3DDevice9()->SetTexture(0,pTex->GetD3D9TexturePtr());
+		D3D9Device::GetInstance().GetD3DDevice9()->SetTexture(0,pTex->GetD3D9TexturePtr());
 
 		GraphicMgr::GetInstance().OnFrame(0.001f);
 		// End the scene
