@@ -13,7 +13,7 @@
 #define _DDS_H_
 
 #include <dxgiformat.h>
-#include <d3d10.h>
+#include <d3d9.h>
 
 #pragma pack(push,1)
 

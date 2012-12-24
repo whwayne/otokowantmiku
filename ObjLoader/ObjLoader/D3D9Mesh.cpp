@@ -41,7 +41,7 @@ bool D3D9Mesh::SetUp(Loader& loader)
 
 		Ptr<D3D9SubMesh> pSubMesh = o_new( D3D9SubMesh);
 		int vertexCount = content[iSubMesh].mVertexBuffer.size()/8;
-
+		//VERTEX BUFFER
 		if( FAILED( D3D9Device::GetInstance().GetD3DDevice9()->CreateVertexBuffer(vertexCount*sizeof( CUSTOMVERTEX ),
 			0, D3DFVF_CUSTOMVERTEX,
 			D3DPOOL_DEFAULT,pVB->GetD3D9VertexBufferPP(), NULL ) ) )
@@ -53,7 +53,7 @@ bool D3D9Mesh::SetUp(Loader& loader)
 		memcpy(pVertices,&content[iSubMesh].mVertexBuffer[0],vertexCount*sizeof( CUSTOMVERTEX ));
 		pVB->GetD3D9VertexBufferPtr()->Unlock();
 
-
+		//INDEX BUFFER
 		if( FAILED( D3D9Device::GetInstance().GetD3DDevice9()->CreateIndexBuffer(content[iSubMesh].mVertexIndexBuffer.size()*sizeof( int ),0,D3DFMT_INDEX32,D3DPOOL_DEFAULT,pIB->GetD3D9IndexBufferPP(),NULL ) ) )
 		{
 			return false;
@@ -63,18 +63,22 @@ bool D3D9Mesh::SetUp(Loader& loader)
 		memcpy(pIndex,&content[iSubMesh].mVertexIndexBuffer[0],content[iSubMesh].mVertexIndexBuffer.size()*sizeof( int ));
 		pIB->GetD3D9IndexBufferPtr()->Unlock();
 
-		for (int i = 0;i<content[iSubMesh].mVertexLayout.size();i++)
+		//VERTEX LAYOUT
+		for (unsigned int i = 0;i<content[iSubMesh].mVertexLayout.size();i++)
 		{
 			D3D9VertexComponent com(content[iSubMesh].mVertexLayout[i]);
 			pVL->AddComponent(com);
 		}
 		pVL->SetUp();
+
+		//LOCAL BOUNDING BOX
+		pVB->SetBBox( CaculateSubMeshBBox(content[iSubMesh].mVertexBuffer));         
+
 		pSubMesh->SetIndexBuffer(pIB);
 		pSubMesh->SetVertexBuffer(pVB);
 		pSubMesh->SetVertexLayout(pVL);
 		pSubMesh->SetIndexCount(content[iSubMesh].mVertexIndexBuffer.size()/3);
 		pSubMesh->SetVertexCount(vertexCount);
-	//	m_pSubMeshArray.push_back(pSubMesh);
 		m_pSubMeshPtrArray[iSubMesh] = pSubMesh;
 		
 	}
@@ -87,4 +91,25 @@ void D3D9Mesh::Copy( D3D9Res& rhs )
 	D3D9Mesh* pSource = (D3D9Mesh*)(&rhs);
 	this->m_SubMeshCount = pSource->m_SubMeshCount;
 	this->m_pSubMeshPtrArray = pSource->m_pSubMeshPtrArray;
+}
+
+aabbox D3D9Mesh::CaculateSubMeshBBox(std::vector<float>& vertices )
+{
+	aabbox bbox;
+	bbox.GetMax() = float4(vertices[0],vertices[1],vertices[2],1.f);
+	bbox.GetMin() = float4(vertices[0],vertices[1],vertices[2],1.f);
+
+	for (unsigned int i = 0;i<vertices.size();i = i+3)
+	{
+		bbox.GetMax().X() = Max(bbox.GetMax().X(),vertices[i]);
+		bbox.GetMin().X() = Min(bbox.GetMin().X(),vertices[i]);
+
+		bbox.GetMax().Y() = Max(bbox.GetMax().Y(),vertices[i]);
+		bbox.GetMin().Y() = Min(bbox.GetMin().Y(),vertices[i]);
+
+		bbox.GetMax().Z() = Max(bbox.GetMax().Z(),vertices[i]);
+		bbox.GetMin().Z() = Min(bbox.GetMin().Z(),vertices[i]);
+	}
+
+	return bbox;
 }

@@ -1,4 +1,5 @@
 #include "Quaternion.h"
+#include "Matrix44.h"
 
 const scalar Quaternion::ms_fEpsilon =(scalar) 1e-03;
 const Quaternion Quaternion::ZERO(0.0,0.0,0.0,0.0);

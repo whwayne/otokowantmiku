@@ -1,9 +1,10 @@
 #pragma once
 #include "MathDefine.h"
 #include "Float3.h"
-#include "Matrix44.h"
 #include <assert.h>
 
+
+class matrix44;
 class Quaternion
 {
 public:
@@ -11,6 +12,7 @@ public:
 	
 	Quaternion(const Radian& rfAngle, const float3& rkAxis);
 	
+	Quaternion(const matrix44& rot);
 	
 	/// Construct a quaternion from 3 orthonormal local axes
 	Quaternion(const float3& xaxis, const float3& yaxis, const float3& zaxis);
@@ -166,6 +168,11 @@ inline Quaternion::Quaternion( const Radian& rfAngle, const float3& rkAxis )
 inline Quaternion::Quaternion( const float3& xaxis, const float3& yaxis, const float3& zaxis )
 {
 	this->FromAxes(xaxis, yaxis, zaxis);
+}
+
+inline Quaternion::Quaternion( const matrix44& rot )
+{
+	this->FromRotationMatrix(rot);
 }
 
 
