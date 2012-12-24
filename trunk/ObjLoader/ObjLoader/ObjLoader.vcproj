@@ -560,6 +560,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Matrix44.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Matrix44.h"
 					>
 				</File>

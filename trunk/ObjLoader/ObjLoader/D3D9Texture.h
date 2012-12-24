@@ -2,7 +2,7 @@
 #include "D3D9Device.h"
 #include "D3D9Res.h"
 #include "Loader.h"
-#include <DXGIFormat.h>
+//#include <DXGIFormat.h>
 
 class D3D9Texture : public D3D9Res
 {

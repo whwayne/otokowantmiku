@@ -1,6 +1,7 @@
 #pragma once
 
 #include "MathDefine.h"
+#include <assert.h>
 
 class float4
 {
@@ -34,7 +35,10 @@ public:
 	bool operator > (const float4& rhs) const;
 	/// smaller operator
 	bool operator < (const float4& rhs) const;
+	
+	scalar operator [] ( const size_t i ) const;
 
+	scalar& operator [] ( const size_t i );
 
 
 	/// return cross product
@@ -167,6 +171,20 @@ inline bool float4::operator<( const float4& rhs ) const
 	return (mx<rhs.mx)&&(my<rhs.my)&&(mz<rhs.mz)&&(mw<rhs.mw);
 }
 
+inline scalar float4::operator[]( const size_t i ) const
+{
+	assert( i < 4 );
+
+	return *(&mx+i);
+}
+
+inline scalar& float4::operator[]( const size_t i )
+{
+	assert( i < 4 );
+
+	return *(&mx+i);
+}
+
 inline float4 float4::cross3( const float4& v0, const float4& v1 )
 {
 	return float4( v0.my*v1.mz - v0.mz*v1.my, v0.mz*v1.mx - v0.mx*v1.mz, v0.mx*v1.my - v0.my*v1.mx, 0 );
@@ -234,7 +252,4 @@ inline scalar& float4::W()
 {
 	return mw;
 }
-
-
-
 //------------------------------------------------------------------------------

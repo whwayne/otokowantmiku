@@ -1,6 +1,7 @@
 #pragma once
 #include "MathDefine.h"
 #include "float4.h"
+#include "Quaternion.h"
 #include <assert.h>
 
 class matrix44
@@ -104,6 +105,9 @@ public:
 	//-----------------------------------------------------------------------
 	matrix44 inverseAffine(void) const;
 
+	void decomposition(float4& position, float4& scale, Quaternion& orientation) const;
+
+	void QDUDecomposition (matrix44& kQ,float4& kD, float4& kU) const;
 protected:
 	union {
 		
@@ -505,3 +509,4 @@ inline const scalar * matrix44::operator[]( size_t iRow ) const
 	assert( iRow < 4 );
 	return m[iRow];
 }
+

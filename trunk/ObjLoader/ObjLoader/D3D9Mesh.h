@@ -15,10 +15,6 @@ public:
 
 	virtual void Copy(D3D9Res& rhs);
 
-// 	std::vector<Ptr<D3D9SubMesh>>& GetSubMeshArray()
-// 	{
-// 		return m_pSubMeshArray;
-// 	}
 	Ptr<D3D9SubMesh>* GetSubMeshArray()
 	{
 		return m_pSubMeshPtrArray;
@@ -32,6 +28,8 @@ protected:
 	
 	Ptr<D3D9SubMesh>*   m_pSubMeshPtrArray;
 	int                 m_SubMeshCount;
-	//std::vector<Ptr<D3D9SubMesh>>      m_pSubMeshArray;
+
+
+	aabbox CaculateSubMeshBBox(std::vector<float>& vertices);
 private:
 };

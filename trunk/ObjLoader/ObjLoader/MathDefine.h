@@ -286,3 +286,26 @@ inline static scalar CosR(const Radian& fValue)
 	return cosf(fValue.valueRadians());
 }
 
+inline scalar Max(scalar fir,scalar sec)
+{
+	if (fir>=sec)
+	{
+		return fir;
+	}
+	else
+	{
+		return sec;
+	}
+}
+
+inline scalar Min(scalar fir,scalar sec)
+{
+	if (fir<=sec)
+	{
+		return fir;
+	}
+	else
+	{
+		return sec;
+	}
+}

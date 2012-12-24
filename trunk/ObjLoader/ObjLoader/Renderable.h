@@ -24,15 +24,15 @@ public:
 
 	aabbox& GetBBox()
 	{
-		return m_BBox;
+		return m_LocalBBox;
 	}
 	void SetBBox(aabbox& box)
 	{
-		m_BBox = box;
+		m_LocalBBox = box;
 	}
 protected:
 	Renderer*  m_pRenderer;
 	
-	aabbox     m_BBox;
+	aabbox     m_LocalBBox;
 private:
 };

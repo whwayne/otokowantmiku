@@ -1,7 +1,7 @@
 #pragma once
 #include "D3D9Device.h"
 #include "D3D9Res.h"
-
+#include "AABBox.h"
 
 // A structure for our custom vertex type
 struct CUSTOMVERTEX
@@ -53,8 +53,16 @@ public:
 	{
 		return &m_pD3D9VertexBuffer;
 	}
+	void SetBBox(aabbox& bbox)
+	{
+		m_LocalBBox = bbox;
+	}
+	aabbox& GetBBox()
+	{
+		return m_LocalBBox;
+	}
 protected:
 	IDirect3DVertexBuffer9*    m_pD3D9VertexBuffer;
-
+	aabbox                     m_LocalBBox;         //axsix anglined bounding box for the vertex buffer;
 
 };
