@@ -13,21 +13,21 @@ protected:
 private:
 };
 
-ray::ray()
+inline ray::ray()
 	:mOri()
 	,mDir()
 {
 	
 }
 
-ray::ray( ray& r )
+inline ray::ray( ray& r )
 	:mOri(r.mOri)
 	,mDir(r.mDir)
 {
 
 }
 
-ray::ray( point& ori,point& dir )
+inline ray::ray( point& ori,point& dir )
 	:mOri(ori)
 	,mDir(mDir)
 {

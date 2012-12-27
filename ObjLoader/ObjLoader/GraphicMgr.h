@@ -3,7 +3,7 @@
 #include "RenderPipeline.h"
 #include "Renderer.h"
 #include "CullSystem.h"
-
+#include "matrix44.h"
 
 class GraphicMgr
 {
@@ -23,9 +23,22 @@ public:
 	{
 		return m_RenderableArries[type];
 	}
+
+	void AttachRenderable(Ptr<Renderable>& pRenderable);
+
 	Renderer* GetRenderer()
 	{
 		return m_pRenderer;
+	}
+
+// 	void SetFrustum(const Frustum& ftm)
+// 	{
+// 		m_Frustum = ftm;
+// 	}
+
+    void SetViewProj(const matrix44& vp)
+	{
+		m_viewProj = vp;
 	}
 protected:
 
@@ -37,5 +50,8 @@ protected:
 	Renderer*       m_pRenderer;
 
 	CullSystem*     m_pCullSystem;
+
+	//Frustum         m_Frustum;
+	matrix44        m_viewProj;
 private:
 };

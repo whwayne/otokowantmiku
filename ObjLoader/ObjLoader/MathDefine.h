@@ -286,6 +286,11 @@ inline static scalar CosR(const Radian& fValue)
 	return cosf(fValue.valueRadians());
 }
 
+inline static scalar TanF(float fValue)
+{
+	return tan(fValue);
+}
+
 inline scalar Max(scalar fir,scalar sec)
 {
 	if (fir>=sec)

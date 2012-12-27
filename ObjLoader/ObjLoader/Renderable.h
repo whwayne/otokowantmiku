@@ -3,6 +3,16 @@
 #include "Res.h"
 #include "Renderer.h"
 #include "AABBox.h"
+#include "D3D9SubMesh.h"
+
+
+enum RenderType
+{
+	COMMONTYPE = 0,
+	ALPHABLEND = 1,
+	ALPHATEST  = 2,
+	RENDERTYPECOUNT,
+};
 
 //-parent class of all objs that can be rendered
 class Renderable:public Res
@@ -22,17 +32,20 @@ public:
 		return m_pRenderer;
 	}
 
-	aabbox& GetBBox()
+	void SetRenderType(RenderType type)
 	{
-		return m_LocalBBox;
+		m_RenderType = type;
 	}
-	void SetBBox(aabbox& box)
+
+	RenderType GetRenderType()
 	{
-		m_LocalBBox = box;
+		return m_RenderType;
 	}
+
+	virtual Ptr<D3D9SubMesh> GetSubMesh() = 0;
+	
 protected:
 	Renderer*  m_pRenderer;
-	
-	aabbox     m_LocalBBox;
+	RenderType m_RenderType;
 private:
 };

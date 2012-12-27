@@ -17,6 +17,8 @@ public:
 
 	bool InterSect(point& p);
 
+	unsigned int InterSectClip(point& p);
+
 	std::vector<Plane>	FormPlane();
 
 	
@@ -35,7 +37,7 @@ protected:
 private:
 };
 
-Frustum::Frustum()
+inline Frustum::Frustum()
 :m_FLUp()
 ,m_FLBp()
 ,m_FRUp()
@@ -48,7 +50,7 @@ Frustum::Frustum()
 
 }
 
-Frustum::Frustum( Frustum& ftm )
+inline Frustum::Frustum( Frustum& ftm )
 :m_FLUp(ftm.m_FLUp)
 ,m_FLBp(ftm.m_FLBp)
 ,m_FRUp(ftm.m_FRUp)
@@ -61,7 +63,7 @@ Frustum::Frustum( Frustum& ftm )
 
 }
 
-Frustum::Frustum( point FLUp,point FLBp,point FRUp,point FRBp,point NLUp,point NLBp,point NRUp,point NRBp )
+inline Frustum::Frustum( point FLUp,point FLBp,point FRUp,point FRBp,point NLUp,point NLBp,point NRUp,point NRBp )
  :m_FLUp(FLUp)
  ,m_FLBp(FLBp)
  ,m_FRUp(FRUp)
@@ -74,7 +76,7 @@ Frustum::Frustum( point FLUp,point FLBp,point FRUp,point FRBp,point NLUp,point N
 
 }
 
-Frustum::~Frustum()
+inline Frustum::~Frustum()
 {
 
 }

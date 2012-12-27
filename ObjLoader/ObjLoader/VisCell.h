@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <list>
 #include "Ptr.h"
 #include "AABBox.h"
 #include "Renderable.h"
@@ -12,7 +12,7 @@ public:
 
 	void Init(int depth,int index);
 public:
-	std::vector<Ptr<Renderable>>& GetRenderables()
+	std::list<Ptr<Renderable>>& GetRenderables()
 	{
 		return mRenderables;
 	}
@@ -28,7 +28,7 @@ public:
 	}
 protected:
 	aabbox cellBox;
-	std::vector<Ptr<Renderable>> mRenderables;
+	std::list<Ptr<Renderable>> mRenderables;
 
 protected:
 	

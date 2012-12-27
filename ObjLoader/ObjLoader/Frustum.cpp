@@ -5,25 +5,28 @@ InterSectResult Frustum::InterSect( aabbox& box )
 {
 	std::vector<point> points = box.FormPoint();
 
-	int inPointCount = 0;
+	unsigned int addRet = 0xffff;
+	unsigned int orRet = 0;
 	for (unsigned int i =0;i<points.size();i++ )
 	{
-		if ( InterSect(points[i]) )
-		{
-			inPointCount++;
-		}
+		unsigned int ret = 0;
+		ret = InterSectClip(points[i]);
+		
+		addRet &= ret;
+		orRet |= ret;
+		
 	}
-	if (inPointCount==8)
+	if (orRet==0)
 	{
 		return INTERSECTIN;
 	}
-	else if (inPointCount==0)
+	else if (addRet!=0)
 	{
-		return INTERSECTOUT;
+		return INTERSECTPART;
 	}
 	else
 	{
-		return INTERSECTPART;
+		return INTERSECTOUT;
 	}
 }
 
@@ -76,11 +79,27 @@ std::vector<Plane> Frustum::FormPlane()
 	point   fbdir2 = m_FRBp - m_NRBp;
 	Plane	faceButtom(fbOri,fbdir1,fbdir2);//ÏÂÃæ
 	
-	vPlane.push_back(faceNear);
-	vPlane.push_back(faceFar);
-	vPlane.push_back(faceLeft);
-	vPlane.push_back(faceRight);
-	vPlane.push_back(faceUP);
-	vPlane.push_back(faceButtom );
+	vPlane[0] = faceNear;
+	vPlane[1] = faceFar;
+	vPlane[2] = faceLeft;
+	vPlane[3] = faceRight;
+	vPlane[4] = faceUP;
+	vPlane[5] = faceButtom;
 	return vPlane;
+}
+
+unsigned int Frustum::InterSectClip( point& p )
+{
+	unsigned ret = 0;
+
+	std::vector<Plane> planes  = FormPlane();
+
+	for (unsigned int i = 0;i<planes.size();i++)
+	{
+		if(planes[i].A*p.X()+planes[i].B*p.Y()+planes[i].C*p.Z()+planes[i].D > 0.f)
+		{
+			ret |= 1<<i;
+		}
+	}
+	return ret;
 }

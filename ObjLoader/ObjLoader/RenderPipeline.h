@@ -5,14 +5,6 @@
 #include <vector>
 #include <list>
 
-enum RenderType
-{
-	COMMONTYPE = 0,
-	ALPHABLEND = 1,
-	ALPHATEST  = 2,
-	RENDERTYPECOUNT,
-};
-
 class RenderPipeline
 {
 public:
@@ -24,6 +16,11 @@ public:
 	std::list<Ptr<Renderable>>& GetRenderableList(RenderType type)
 	{
 		return m_RenderableArries[type];
+	}
+
+	std::vector<std::list<Ptr<Renderable>>>& GetRenderables()
+	{
+		return m_RenderableArries;
 	}
 
 	virtual void RenderRenderables();
