@@ -2,6 +2,8 @@
 #include "Point.h"
 #include <vector>
 
+class matrix44; 
+
 class aabbox
 {
 public:
@@ -18,6 +20,7 @@ public:
 
 	InterSectResult InterSect(aabbox& box);
 
+	InterSectResult InterSect(const matrix44& viewProj);
 	std::vector<point> FormPoint();
 protected:
 	point mMax;

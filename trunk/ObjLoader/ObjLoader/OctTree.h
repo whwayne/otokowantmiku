@@ -83,7 +83,7 @@ TreeNode<NodeContent>::TreeNode()
 	:mpParent(0)
 	,mpChildren()
 {
-	
+	mpChildren.clear();
 }
 
 

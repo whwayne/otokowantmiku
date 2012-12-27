@@ -3,7 +3,9 @@
 #include "OctTree.h"
 #include "Renderer.h"
 #include "Memory.h"
-
+#include "Frustum.h"
+#include "Matrix44.h"
+#include <list>
 
 //- this is not a singleton class,because it may be used many times 
 class CullSystem
@@ -24,7 +26,9 @@ public:
 
 	void AttachRenderable(Ptr<Renderable>& renderable);
 
+	void Cull( Frustum& frus, TreeNode<VisCell>& node, std::vector<std::list<Ptr<Renderable>>>& outRenderables);
 
+	void Cull( matrix44& vp, TreeNode<VisCell>& node, std::vector<std::list<Ptr<Renderable>>>& outRenderables);
 
 public:
 	void SetDepth(int depth)
@@ -36,6 +40,7 @@ public:
 		m_CullArea = area;
 	}
 protected:	
+
 	void BuildOctTree(TreeNode<VisCell>& node);
 	void DestoryOctTree(TreeNode<VisCell>& node);
 

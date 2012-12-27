@@ -14,7 +14,7 @@ public:
 		scalar m20,scalar m21,scalar m22,scalar m23,
 		scalar m30,scalar m31,scalar m32,scalar m33
 			);
-	matrix44(matrix44& m44);
+	matrix44(const matrix44& m44);
 
     /** Check whether or not the matrix is affine matrix.
     @remarks
@@ -27,7 +27,7 @@ public:
     }
 
 	/// assignment operator
-	void operator=(const matrix44& rhs);
+	matrix44& operator=(const matrix44& rhs);
 	/// equality operator
 	bool operator==(const matrix44& rhs) const;
 	/// inequality operator
@@ -108,6 +108,15 @@ public:
 	void decomposition(float4& position, float4& scale, Quaternion& orientation) const;
 
 	void QDUDecomposition (matrix44& kQ,float4& kD, float4& kU) const;
+
+	static matrix44 Projection(const float near_plane, /*Distance to near clipping  plane*/	const float far_plane,  /* Distance to far clipping  plane*/const float fov_horiz,  /* Horizontal field of view angle, in radians */const float fov_vert);
+
+    static const matrix44 ZERO;
+    static const matrix44 IDENTITY;
+    /** Useful little matrix which takes 2D clipspace {-1, 1} to {0,1}
+        and inverts the Y. */
+    static const matrix44 CLIPSPACE2DTOIMAGESPACE;
+
 protected:
 	union {
 		
@@ -164,7 +173,7 @@ inline matrix44::matrix44( scalar m00,scalar m01,scalar m02,scalar m03,
 }
 
 
-inline matrix44::matrix44( matrix44& m44 )
+inline matrix44::matrix44(const matrix44& m44 )
 {
 	m[0][0] = m44[0][0];
 	m[0][1] = m44[0][1];
@@ -184,8 +193,8 @@ inline matrix44::matrix44( matrix44& m44 )
 	m[3][3] = m44[3][3];
 }
 
-__forceinline void
-matrix44::operator=(const matrix44& m44)
+__forceinline
+matrix44& matrix44::operator=( const matrix44& m44 )
 {
 	m[0][0] = m44[0][0];
 	m[0][1] = m44[0][1];
@@ -203,6 +212,7 @@ matrix44::operator=(const matrix44& m44)
 	m[3][1] = m44[3][1];
 	m[3][2] = m44[3][2];
 	m[3][3] = m44[3][3];
+	return *this;
 }
 
 //------------------------------------------------------------------------------

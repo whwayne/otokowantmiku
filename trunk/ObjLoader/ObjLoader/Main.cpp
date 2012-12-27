@@ -19,6 +19,7 @@
 #include "Float3.h"
 #include "Float4.h"
 #include "OctTree.h"
+#include "Matrix44.h"
 //#include "AABBox.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
@@ -69,8 +70,8 @@ void OnFrame()
 	MeshRenderable* pMeshRenderable =(MeshRenderable*) pRenderable;
 	pMeshRenderable->SetRender(GraphicMgr::GetInstance().GetRenderer());
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
-	
-	GraphicMgr::GetInstance().GetRenderableList(COMMONTYPE).push_back(pRenderable);
+	pMeshRenderable->SetRenderType(COMMONTYPE);
+	GraphicMgr::GetInstance().AttachRenderable( Ptr<Renderable>(pRenderable) );
 }
 
 HRESULT InitD3D( HWND hWnd )
@@ -118,11 +119,20 @@ VOID Render()
 	D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
 	D3DXMATRIXA16 matView;
 	D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );
-	 D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_VIEW, &matView );
+	D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_VIEW, &matView );
+
+	Frustum ftm(point(-1000.f,1000.f,1000.f,1.f),point(-1000.f,-1000.f,1000.f,1.f),point(1000.f,1000.f,1000.f,1.f),point(1000.f,-1000.f,-1000.f,1.f),point(-1000.f,1000.f,-1000.f,1.f),point(-1000.f,-1000.f,-1000.f,1.f),point(1000.f,1000.f,-1000.f,1.f),point(1000.f,-1000.f,-1000.f,1.f));
+
+	
 
 	D3DXMATRIXA16 matProj;
-	D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f );
-	 D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_PROJECTION, &matProj );
+	//D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f );
+
+
+	matrix44 m44Proj = matrix44::Projection(1.f,100.f,1.57f/2,1.57f/2);
+	GraphicMgr::GetInstance().SetViewProj(m44Proj);
+
+	 D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_PROJECTION, (const D3DMATRIX *)&m44Proj );
 	// Clear the backbuffer to a blue color
 	 D3D9Device::GetInstance().GetD3DDevice9()->Clear( 0, NULL, D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB( 100, 125, 150 ), 1.0f, 0 );
 

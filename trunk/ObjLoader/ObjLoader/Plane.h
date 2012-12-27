@@ -27,7 +27,7 @@ private:
 };
 
 
-Plane::Plane()
+inline Plane::Plane()
 :A(0.f)
 ,B(0.f)
 ,C(0.f)
@@ -36,7 +36,7 @@ Plane::Plane()
 
 }
 
-Plane::Plane(const Plane& pla )
+inline Plane::Plane(const Plane& pla )
 :A(pla.A)
 ,B(pla.B)
 ,C(pla.C)
@@ -46,7 +46,7 @@ Plane::Plane(const Plane& pla )
 }
 
 
-Plane::Plane( float a,float b,float c,float d )
+inline Plane::Plane( float a,float b,float c,float d )
 :A(a)
 ,B(b)
 ,C(c)
@@ -55,7 +55,7 @@ Plane::Plane( float a,float b,float c,float d )
 
 }
 
-Plane::Plane( ray& r1,ray& r2 )
+inline Plane::Plane( ray& r1,ray& r2 )
 :A(0.f)
 ,B(0.f)
 ,C(0.f)
@@ -64,7 +64,7 @@ Plane::Plane( ray& r1,ray& r2 )
 	
 }
 
-Plane::Plane( point& ori,point& dir1,point& dir2 )
+inline Plane::Plane( point& ori,point& dir1,point& dir2 )
 :A(0.f)
 ,B(0.f)
 ,C(0.f)
@@ -78,13 +78,13 @@ Plane::Plane( point& ori,point& dir1,point& dir2 )
 }
 
 
-Plane::~Plane()
+inline Plane::~Plane()
 {
 
 }
 
 
-void Plane::operator=( const Plane& rhs )
+inline void Plane::operator=( const Plane& rhs )
 {
 	A = rhs.A;
 	B = rhs.B;
