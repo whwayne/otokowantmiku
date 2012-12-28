@@ -34,12 +34,9 @@ D3D9Texture* pTex;
 void InitGeometry()
 {
 	GraphicMgr::GetInstance().Init();
-
-	//pMesh = (D3D9Mesh*)ResourceMgr::GetInstance().GetResByID<MeshResGenerator>(std::string("cup.obj")).get();
 	
 	pMesh = (D3D9Mesh*)	ResourceMgr::GetInstance().GetResAnsycByID<ObjLoader,D3D9Mesh>(std::string("cup.obj")).get();
 
-	//pTex = (D3D9Texture*) ResourceMgr::GetInstance().GetResAnsycByID<TexLoader, D3D9Texture>(std::string("Tiny_skin.dds")).get();
 	pTexLoader = o_new(TexLoader);
 	pTexLoader->LoadFromFile(std::string("Tiny_skin.dds"));
 	pTex = o_new(D3D9Texture);
@@ -71,6 +68,12 @@ void OnFrame()
 	pMeshRenderable->SetRender(GraphicMgr::GetInstance().GetRenderer());
 	pMeshRenderable->SetSubMesh( pMesh->GetSubMeshArray()[1] );
 	pMeshRenderable->SetRenderType(COMMONTYPE);
+
+	matrix44 pos;
+	pos.makeTransLH( float4(2.f,2.f,4.f,1.f) );
+
+	pMeshRenderable->SetWorld(pos);
+
 	GraphicMgr::GetInstance().AttachRenderable( Ptr<Renderable>(pRenderable) );
 }
 
@@ -115,22 +118,15 @@ VOID Render()
 	ResourceMgr::GetInstance().OnBeginFrame();
 	OnFrame();
 	D3DXVECTOR3 vEyePt( 0.0f, 3.0f,-5.0f );
-	D3DXVECTOR3 vLookatPt( 0.0f, 0.0f, 0.0f );
+	D3DXVECTOR3 vLookatPt( 0.0f,3.0f, 0.0f );
 	D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
 	D3DXMATRIXA16 matView;
 	D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );
 	D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_VIEW, &matView );
-
-	Frustum ftm(point(-1000.f,1000.f,1000.f,1.f),point(-1000.f,-1000.f,1000.f,1.f),point(1000.f,1000.f,1000.f,1.f),point(1000.f,-1000.f,-1000.f,1.f),point(-1000.f,1000.f,-1000.f,1.f),point(-1000.f,-1000.f,-1000.f,1.f),point(1000.f,1000.f,-1000.f,1.f),point(1000.f,-1000.f,-1000.f,1.f));
-
 	
-
-	D3DXMATRIXA16 matProj;
-	//D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f );
-
-
-	matrix44 m44Proj = matrix44::Projection(1.f,100.f,1.57f/2,1.57f/2);
-	GraphicMgr::GetInstance().SetViewProj(m44Proj);
+	matrix44* m44View = (matrix44*)&matView;
+	matrix44 m44Proj = matrix44::ProjectionLH(1.f,100.f,1.57f/2,1.57f/2);
+	GraphicMgr::GetInstance().SetViewProj((*m44View)*m44Proj);
 
 	 D3D9Device::GetInstance().GetD3DDevice9()->SetTransform( D3DTS_PROJECTION, (const D3DMATRIX *)&m44Proj );
 	// Clear the backbuffer to a blue color

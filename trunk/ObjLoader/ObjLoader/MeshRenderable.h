@@ -20,6 +20,8 @@ public:
 	{
 		return m_pSubMesh;
 	}
+
+	virtual aabbox GetWorldBBox();
 protected:
 	Ptr<D3D9SubMesh> m_pSubMesh;
 	

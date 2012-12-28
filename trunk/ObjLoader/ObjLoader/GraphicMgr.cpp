@@ -61,9 +61,9 @@ void GraphicMgr::OnFrame( float deltaTime )
 	//- cull at first,now it's empty,because I haven't do it. 
 	m_pCullSystem->Cull(m_viewProj,m_pCullSystem->GetRootNode(),m_pPipeline->GetRenderables());
 	//- get the culling result, and render.
-// 	m_pPipeline->GetRenderableList(COMMONTYPE) = m_RenderableArries[COMMONTYPE];
-// 	m_pPipeline->GetRenderableList(ALPHABLEND) = m_RenderableArries[ALPHABLEND];
-// 	m_pPipeline->GetRenderableList(ALPHATEST) = m_RenderableArries[ALPHATEST];
+//  	m_pPipeline->GetRenderableList(COMMONTYPE) = m_RenderableArries[COMMONTYPE];
+//  	m_pPipeline->GetRenderableList(ALPHABLEND) = m_RenderableArries[ALPHABLEND];
+//  	m_pPipeline->GetRenderableList(ALPHATEST) = m_RenderableArries[ALPHATEST];
 
 	m_pPipeline->RenderRenderables();
 }

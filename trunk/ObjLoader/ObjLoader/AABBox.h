@@ -22,6 +22,9 @@ public:
 
 	InterSectResult InterSect(const matrix44& viewProj);
 	std::vector<point> FormPoint();
+
+
+	aabbox Transform(const matrix44& mtra);
 protected:
 	point mMax;
 	point mMin;

@@ -4,7 +4,7 @@
 #include "Renderer.h"
 #include "AABBox.h"
 #include "D3D9SubMesh.h"
-
+#include "Matrix44.h"
 
 enum RenderType
 {
@@ -43,8 +43,20 @@ public:
 	}
 
 	virtual Ptr<D3D9SubMesh> GetSubMesh() = 0;
+
+	virtual aabbox GetWorldBBox() = 0;
 	
+	void SetWorld(const matrix44& mw)
+	{
+		m_World = mw;
+	}
+
+	const matrix44& GetWorld() const
+	{
+		return m_World;
+	}
 protected:
+	matrix44   m_World;
 	Renderer*  m_pRenderer;
 	RenderType m_RenderType;
 private:

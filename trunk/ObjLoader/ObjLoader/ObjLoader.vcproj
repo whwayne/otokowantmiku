@@ -548,6 +548,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Float4.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Float4.h"
 					>
 				</File>

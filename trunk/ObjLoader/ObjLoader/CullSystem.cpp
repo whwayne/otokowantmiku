@@ -107,7 +107,8 @@ void CullSystem::BuildOctTree( TreeNode<VisCell>& node )
 void CullSystem::AttachRenderable( Ptr<Renderable>& renderable )
 {
 	TreeNode<VisCell>* pContentNode = NULL;
-	pContentNode = OctTreeBoundCheck(m_RootNode ,renderable->GetSubMesh()->GetVertexBuffer()->GetBBox()) ;
+
+	pContentNode = OctTreeBoundCheck( m_RootNode ,renderable->GetWorldBBox() ) ;
 	if (pContentNode)
 	{
 		pContentNode->GetContent().GetRenderables().push_back(renderable);
@@ -145,17 +146,17 @@ TreeNode<VisCell>* CullSystem::OctTreeBoundCheck( TreeNode<VisCell>& node,aabbox
 			 }
 		}
 	}
-	else
-	{
-		if (node.GetParent()  )
-		{
-			return OctTreeBoundCheck(*node.GetParent(),box);
-		}
-		else
-		{
-			return NULL;
-		}
-	}
+// 	else
+// 	{
+// 		if (node.GetParent()  )
+// 		{
+// 			return OctTreeBoundCheck(*node.GetParent(),box);
+// 		}
+// 		else
+// 		{
+// 			return NULL;
+// 		}
+// 	}
 }
 
 void CullSystem::Cull( Frustum& frus, TreeNode<VisCell>& node, std::vector<std::list<Ptr<Renderable>>>& outRenderables)
@@ -210,7 +211,7 @@ void CullSystem::Cull( matrix44& vp, TreeNode<VisCell>& node, std::vector<std::l
 		{
 			for (;iter!=node.GetContent().GetRenderables().end();iter++)
 			{
-				if ( (*iter)->GetSubMesh()->GetVertexBuffer()->GetBBox().InterSect(vp)!= INTERSECTOUT)
+				if ( (*iter)->GetWorldBBox().InterSect(vp)!= INTERSECTOUT)
 				{
 					RenderType rType = (*iter)->GetRenderType();
 					outRenderables[rType].push_back((*iter));

@@ -31,11 +31,6 @@ public:
 		return m_pRenderer;
 	}
 
-// 	void SetFrustum(const Frustum& ftm)
-// 	{
-// 		m_Frustum = ftm;
-// 	}
-
     void SetViewProj(const matrix44& vp)
 	{
 		m_viewProj = vp;

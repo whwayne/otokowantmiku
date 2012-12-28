@@ -139,7 +139,7 @@ void matrix44::QDUDecomposition (matrix44& kQ,
 	//I used window's sqrt funtion here,but ogre used asm invsqrt function,that's much much faster
 }
 
-matrix44 matrix44::Projection( const float near_plane, /*Distance to near clipping plane*/ const float far_plane, /* Distance to far clipping plane*/const float fov_horiz, /* Horizontal field of view angle, in radians */const float fov_vert )
+matrix44 matrix44::ProjectionLH( const float near_plane, /*Distance to near clipping plane*/ const float far_plane, /* Distance to far clipping plane*/const float fov_horiz, /* Horizontal field of view angle, in radians */const float fov_vert )
 {
 	float    h, w, Q;
 
@@ -156,4 +156,22 @@ matrix44 matrix44::Projection( const float near_plane, /*Distance to near clippi
 	ret[2][3] = 1.f;
 	return ret;
 
+}
+
+matrix44 matrix44::ProjectionRH( const float near_plane, /*Distance to near clipping plane*/ const float far_plane, /* Distance to far clipping plane*/const float fov_horiz, /* Horizontal field of view angle, in radians */const float fov_vert )
+{
+	float    h, w, Q;
+
+	w = (float)1.f/TanF(fov_horiz*0.5f);  // 1/tan(x) == cot(x)
+	h = (float)1.f/TanF(fov_vert*0.5f);   // 1/tan(x) == cot(x)
+	Q = far_plane/(far_plane - near_plane);
+
+	matrix44 ret(matrix44::ZERO);
+
+	ret[0][0] = w;
+	ret[1][1] = h;
+	ret[2][2]= Q;
+	ret[3][2] = -Q*near_plane;
+	ret[2][3] = -1.f;
+	return ret;
 }
