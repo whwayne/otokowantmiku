@@ -78,7 +78,12 @@ public:
     */
     void makeTransRH( const float4& v );
 
+	//--------------------------------------------------------------------
+    void setTransLH( const float4& v );
 
+    /** Builds a translation matrix
+    */
+    void makeTransLH( const float4& v );
 
     /*
     -----------------------------------------------------------------------
@@ -109,7 +114,9 @@ public:
 
 	void QDUDecomposition (matrix44& kQ,float4& kD, float4& kU) const;
 
-	static matrix44 Projection(const float near_plane, /*Distance to near clipping  plane*/	const float far_plane,  /* Distance to far clipping  plane*/const float fov_horiz,  /* Horizontal field of view angle, in radians */const float fov_vert);
+	static matrix44 ProjectionLH(const float near_plane, /*Distance to near clipping  plane*/	const float far_plane,  /* Distance to far clipping  plane*/const float fov_horiz,  /* Horizontal field of view angle, in radians */const float fov_vert);
+
+	static matrix44 ProjectionRH(const float near_plane, /*Distance to near clipping  plane*/	const float far_plane,  /* Distance to far clipping  plane*/const float fov_horiz,  /* Horizontal field of view angle, in radians */const float fov_vert);
 
     static const matrix44 ZERO;
     static const matrix44 IDENTITY;
@@ -349,7 +356,7 @@ inline matrix44 matrix44::transpose() const
 
 inline void matrix44::setTransRH( const float4& v )
 {
-	assert(v.W()==0.0f);
+	assert(v.W()==1.0f);
 	m[0][3] = v.X();
 	m[1][3] = v.Y();
 	m[2][3] = v.Z();
@@ -357,16 +364,33 @@ inline void matrix44::setTransRH( const float4& v )
 
 inline void matrix44::makeTransRH( const float4& v )
 {
-	assert(v.W()==0.0f);
+	assert(v.W()==1.0f);
 	m[0][0] = 1.0; m[0][1] = 0.0; m[0][2] = 0.0; m[0][3] = v.X();
 	m[1][0] = 0.0; m[1][1] = 1.0; m[1][2] = 0.0; m[1][3] = v.Y();
 	m[2][0] = 0.0; m[2][1] = 0.0; m[2][2] = 1.0; m[2][3] = v.Z();
 	m[3][0] = 0.0; m[3][1] = 0.0; m[3][2] = 0.0; m[3][3] = 1.0f;
 }
 
+inline void matrix44::setTransLH( const float4& v )
+{
+	assert(v.W()==1.0f);
+	m[3][0] = v.X();
+	m[3][1] = v.Y();
+	m[3][2] = v.Z();
+}
+
+inline void matrix44::makeTransLH( const float4& v )
+{
+	assert(v.W()==1.0f);
+	m[0][0] = 1.0f;   m[0][1] = 0.0f;    m[0][2] = 0.0f;   m[0][3] = 0.f;
+	m[1][0] = 0.0f;   m[1][1] = 1.0f;    m[1][2] = 0.0f;   m[1][3] = 0.f;
+	m[2][0] = 0.0f;   m[2][1] = 0.0f;    m[2][2] = 1.0f;   m[2][3] = 0.f;
+	m[3][0] = v.X();  m[3][1] =  v.Y();  m[3][2] = v.Z();  m[3][3] = 1.0f;
+}
+
 inline void matrix44::setScale( const float4& v )
 {
-	assert(v.W()==0.0f);
+	assert(v.W()==1.0f);
 	
 	m[0][0] = v.X();
 	m[1][1] = v.Y();
@@ -375,7 +399,7 @@ inline void matrix44::setScale( const float4& v )
 
 inline matrix44 matrix44::getScale( const float4& v )
 {
-	assert(v.W()==0.0f);
+	assert(v.W()==1.0f);
 	matrix44 r;
 	r.m[0][0] = v.X(); r.m[0][1] = 0.0; r.m[0][2] = 0.0; r.m[0][3] = 0.0;
 	r.m[1][0] = 0.0; r.m[1][1] = v.Y(); r.m[1][2] = 0.0; r.m[1][3] = 0.0;

@@ -2,7 +2,7 @@
 
 #include "MathDefine.h"
 #include <assert.h>
-
+class matrix44;
 class float4
 {
 public:
@@ -27,6 +27,7 @@ public:
 	float4 operator-(const float4& rhs) const;
 	/// multiply with scalar
 	float4 operator*(scalar s) const;
+
 	/// equality operator
 	bool operator==(const float4& rhs) const;
 	/// inequality operator
