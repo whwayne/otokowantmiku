@@ -32,7 +32,7 @@ namespace App
 	void ScriptGeneralManager::LoadAssemblies()
 	{
 	    MonoDomain* pDomain =  mono_domain_get();
-		MonoAssembly* pAssemly = mono_domain_assembly_open(pDomain,g_csRuntimeLibery); 
+		MonoAssembly* pAssemly = mono_domain_assembly_open(pDomain,g_csRuntimeLibrary); 
 		m_pRuntimeLibery = mono_assembly_get_image(pAssemly);
 	}
 
@@ -57,6 +57,15 @@ namespace App
 		ALL_MONO_API
 
 	
+	}
+
+
+	MonoMethod* ScriptGeneralManager::GetStaticMethod(const std::string& sig,MonoImage* pImage)
+	{
+		MonoMethodDesc* pSig = mono_method_desc_new(sig.c_str(),false);
+		MonoMethod* pMethod  = mono_method_desc_search_in_image( pSig, pImage);
+		mono_method_desc_free(pSig);
+		return pMethod;
 	}
 
 	void ScriptGeneralManager::CallStaticMethod(MonoMethod* method,void** prarm)

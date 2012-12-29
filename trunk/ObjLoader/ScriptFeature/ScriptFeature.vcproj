@@ -149,11 +149,11 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\MonoFunRegist.cpp"
+				RelativePath=".\ScriptBind.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ScriptBind.cpp"
+				RelativePath=".\ScriptClass.cpp"
 				>
 			</File>
 			<File
@@ -175,10 +175,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\MonoFunRegist.h"
-				>
-			</File>
-			<File
 				RelativePath=".\MonoType.h"
 				>
 			</File>
@@ -188,6 +184,10 @@
 			</File>
 			<File
 				RelativePath=".\ScriptBind.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ScriptClass.h"
 				>
 			</File>
 			<File
@@ -208,6 +208,18 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="FunRegist"
+			>
+			<File
+				RelativePath=".\MonoFunRegist.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MonoFunRegist.h"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"

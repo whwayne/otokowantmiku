@@ -8,5 +8,5 @@ void OutPutToScreen()
 
 void RegistInternalCalls()
 {
-	mono_add_internal_call("OutPutToScreen()",&OutPutToScreen);
+	mono_add_internal_call("ScriptRuntimeLibrary.Util::OutPutToScreen()",&OutPutToScreen);
 }
