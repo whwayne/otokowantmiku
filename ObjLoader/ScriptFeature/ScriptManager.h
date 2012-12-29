@@ -2,10 +2,12 @@
 #include "PreCompiledHeaders.h"
 #include "MonoApi.h"
 #include "MonoType.h"
+#include <map>
+#include <string>
 
 namespace App
 {
-	static const char*  g_csRuntimeLibery = "../media/script/bin/runtimeLibery.dll";
+	static const char*  g_csRuntimeLibrary = "..//media//script//bin//ScriptRuntimeLibrary.dll";
 	static const char*  g_csUserDef = "../media/script/bin/userDef.dll";
 
 	struct MonoImageMap
@@ -26,6 +28,7 @@ namespace App
 		ImageSize,
 	};
 
+	class ScriptClass;
 	class ScriptGeneralManager
 	{
 	public:
@@ -39,6 +42,8 @@ namespace App
 
 		void SetupScriptSystem();
 		void CallStaticMethod(MonoMethod* method,void** prarm);
+
+		MonoMethod* GetStaticMethod(const std::string& sig,MonoImage* pImage);
 		MonoImage* GetImage()
 		{
 			return m_pRuntimeLibery;
@@ -51,6 +56,10 @@ namespace App
 		HMODULE monoDLL;
 
 		MonoImage* m_pRuntimeLibery ;
-	//	MonoImageMap m_MonoImages;
+
+
+		std::map<std::string,ScriptClass*> m_mScriptClassCache;
+
+		std::map<std::string,MonoMethod*> m_mStaticFooCache;
 	};
 }

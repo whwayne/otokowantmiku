@@ -20,7 +20,8 @@
 #include "Float4.h"
 #include "OctTree.h"
 #include "Matrix44.h"
-//#include "AABBox.h"
+
+#include "../ScriptFeature/ScriptManager.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
@@ -44,8 +45,13 @@ void InitGeometry()
 	o_delete(pTexLoader);
 
 	pRenderable = new MeshRenderable();
+	//---------------------------------------ScriptManager------------------------------
+	App::ScriptGeneralManager::GetInstance().SetupScriptSystem();
 
 
+	MonoMethod* pFoo =App::ScriptGeneralManager::GetInstance().GetStaticMethod("Util:OutPutToScreenEX()",App::ScriptGeneralManager::GetInstance().GetImage());
+
+	App::ScriptGeneralManager::GetInstance().CallStaticMethod(pFoo,NULL);
 }
 
 void OnFrame()
@@ -118,7 +124,7 @@ VOID Render()
 	ResourceMgr::GetInstance().OnBeginFrame();
 	OnFrame();
 	D3DXVECTOR3 vEyePt( 0.0f, 3.0f,-5.0f );
-	D3DXVECTOR3 vLookatPt( 0.0f,3.0f, 0.0f );
+	D3DXVECTOR3 vLookatPt( 0.0f,0.0f, 0.0f );
 	D3DXVECTOR3 vUpVec( 0.0f, 1.0f, 0.0f );
 	D3DXMATRIXA16 matView;
 	D3DXMatrixLookAtLH( &matView, &vEyePt, &vLookatPt, &vUpVec );

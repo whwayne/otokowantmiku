@@ -41,6 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="H:\otokowantmiku\ObjLoader\ScriptFeature"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -60,8 +61,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="d3d9.lib d3dx9.lib winmm.lib"
+				AdditionalDependencies="d3d9.lib d3dx9.lib winmm.lib ScriptFeature.lib"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="H:\otokowantmiku\ObjLoader\Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
