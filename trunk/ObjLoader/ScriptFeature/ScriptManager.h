@@ -44,6 +44,9 @@ namespace App
 		void CallStaticMethod(MonoMethod* method,void** prarm);
 
 		MonoMethod* GetStaticMethod(const std::string& sig,MonoImage* pImage);
+
+		ScriptClass* GetScriptClass(const std::string& className,MonoImage* pImage);
+
 		MonoImage* GetImage()
 		{
 			return m_pRuntimeLibery;

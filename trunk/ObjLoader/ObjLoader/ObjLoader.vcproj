@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="H:\otokowantmiku\ObjLoader\ScriptFeature"
+				AdditionalIncludeDirectories="H:\otokowantmiku\ObjLoader\ScriptFeature;H:\otokowantmiku\ObjLoader\MikuCore"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="d3d9.lib d3dx9.lib winmm.lib ScriptFeature.lib"
+				AdditionalDependencies="d3d9.lib d3dx9.lib winmm.lib ScriptFeature.lib MikuCore.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="H:\otokowantmiku\ObjLoader\Debug"
 				GenerateDebugInformation="true"
@@ -238,14 +238,6 @@
 		<Filter
 			Name="Util"
 			>
-			<File
-				RelativePath=".\UtilStr.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\UtilStr.h"
-				>
-			</File>
 			<Filter
 				Name="Math"
 				>
@@ -491,52 +483,8 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Memory"
-				>
-				<File
-					RelativePath=".\Memory.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Memory.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Thread"
-				>
-				<File
-					RelativePath=".\CriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Event.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Thread.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Thread.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="Sys"
 				>
-				<File
-					RelativePath=".\Ptr.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Ptr.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Res.h"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="Math"
@@ -642,18 +590,6 @@
 					>
 				</File>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="IO"
-			>
-			<File
-				RelativePath=".\IO.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\IO.h"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>

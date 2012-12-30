@@ -1,5 +1,5 @@
 #include "ObjLoader.h"
-#include "UtilStr.h"
+#include "..\MikuCore\UtilStr.h"
 
 struct VertexCacheUnit
 {
