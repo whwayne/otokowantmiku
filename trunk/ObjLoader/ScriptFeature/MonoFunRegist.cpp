@@ -3,7 +3,7 @@
 
 void OutPutToScreen()
 {
-	printf("internal call success");
+	printf("Script Entry Success");
 }
 
 void RegistInternalCalls()

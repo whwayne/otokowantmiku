@@ -1,40 +1,48 @@
 #include "ScriptInstance.h"
 #include "ScriptManager.h"
 #include "ScriptUtitly.h"
+#include "ScriptClass.h"
 
 namespace App
 {
-
-
 	ScriptInstance::ScriptInstance()
+		:m_pScriptClass(0)
 	{
-
+		for ( int i=0;i<ScriptInstance::MethodCount;i++)
+		{
+			m_pEntryMethods[i] = NULL;
+		}
 	}
 
 	ScriptInstance::~ScriptInstance()
 	{
 
 	}
-	void ScriptInstance::Init( const char* cassembly,const char* cnamespace,const char* cclass )
+	void ScriptInstance::Init( MonoImage* pImage,const char* cclass )
 	{
-		if(strcmp(cassembly,"RuntimeLibery")!=0)
-		{
-			printf("can only init from runtime libery");
-			return ;
-		}
-		MonoImage* pImage =	ScriptGeneralManager::GetInstance().GetImage();
-		m_pMonoClass = mono_class_from_name(pImage,cnamespace,cclass);
-
-		m_pMonoObj = mono_object_new(mono_domain_get(),m_pMonoClass); // alloc memory;
-		m_monoGCHandle = mono_gchandle_new(m_pMonoObj,1); // pin the memory
-		
-		mono_runtime_object_init(m_pMonoObj);//call .ctor
-		SetCppObj<ScriptInstance>( m_pMonoObj,*this );
+		CppObjToScriptObj(*this,cclass);
+		m_pScriptClass = ScriptGeneralManager::GetInstance().GetScriptClass(cclass);
+		GetMethods(m_pScriptClass->GetMonoClass());
 	}
 
 	void ScriptInstance::OnFrame()
 	{
-		mono_runtime_invoke(m_pOnFrame,m_pMonoObj,NULL,NULL);
+		mono_runtime_invoke(m_pEntryMethods[ScriptInstance::MethodOnFrame],GetMonoObj(),NULL,NULL);
+	}
+
+	void ScriptInstance::GetMethods(MonoClass* pClass)
+	{
+		for (int i=0;i<ScriptInstance::MethodCount;i++)
+		{
+			m_pEntryMethods[i] = m_pScriptClass->GetMethod(scEntryMethodNames[i]);
+			
+			if ( m_pEntryMethods[i]==NULL )
+			{
+				MonoClass* pParentClass = mono_class_get_parent( m_pScriptClass->GetMonoClass() );
+				GetMethods(pParentClass);
+			}
+		}
+		
 	}
 
 }

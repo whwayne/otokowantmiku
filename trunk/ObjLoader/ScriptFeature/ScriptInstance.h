@@ -2,21 +2,37 @@
 #include "PreCompiledHeaders.h"
 #include "MonoApi.h"
 #include "MonoType.h"
+#include "ScriptBind.h"
 
 namespace App
 {
+	
+	class ScriptClass;
 	class ScriptInstance
 	{
+		__Scriptbind
+	public:
+		enum EntryMethod
+		{
+			MethodOnFrame = 0,
+			MethodCount,
+		};
 	public:
 		ScriptInstance();
 		~ScriptInstance();
 		void OnFrame();
-		void Init(const char* cassembly  ,   const char* cnamespace   ,const char* cclass);
+		void Init(MonoImage* pImage  ,   const char* className);
 
 	private:
-		int          m_monoGCHandle;
-		MonoMethod*  m_pOnFrame;
-		MonoObject*  m_pMonoObj;
-		MonoClass*   m_pMonoClass;
+		void GetMethods(MonoClass* pClass);
+	private:
+
+		MonoMethod*  m_pEntryMethods[ScriptInstance::MethodCount];
+		ScriptClass* m_pScriptClass;
+	};
+
+	static const char* scEntryMethodNames[ScriptInstance::MethodCount] = 
+	{
+		"*:OnFrame()"
 	};
 }

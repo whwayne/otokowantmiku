@@ -15,7 +15,7 @@ namespace App
 		ScriptClass();
 		virtual ~ScriptClass();
 		
-		void Init( MonoImage* pImage,const std::string& namespaceName ,const std::string& className);
+		bool Init( MonoImage* pImage,const std::string& namespaceName ,const std::string& className);
 
 		MonoMethod* GetMethod( const std::string& sig);
 

@@ -22,6 +22,7 @@
 #include "Matrix44.h"
 
 #include "../ScriptFeature/ScriptManager.h"
+#include "../ScriptFeature/ScriptInstance.h"
 
 LPDIRECT3D9             g_pD3D = NULL; // Used to create the D3DDevice
 
@@ -49,9 +50,13 @@ void InitGeometry()
 	App::ScriptGeneralManager::GetInstance().SetupScriptSystem();
 
 
-	MonoMethod* pFoo =App::ScriptGeneralManager::GetInstance().GetStaticMethod("Util:OutPutToScreenEX()",App::ScriptGeneralManager::GetInstance().GetImage());
+// 	MonoMethod* pFoo =App::ScriptGeneralManager::GetInstance().GetStaticMethod("Util:OutPutToScreenEX()",App::ScriptGeneralManager::GetInstance().GetRuntimeLibraryImage());
+// 
+// 	App::ScriptGeneralManager::GetInstance().CallStaticMethod(pFoo,NULL);
 
-	App::ScriptGeneralManager::GetInstance().CallStaticMethod(pFoo,NULL);
+	App::ScriptInstance* ScriptInstance = new App::ScriptInstance();
+	ScriptInstance->Init(App::ScriptGeneralManager::GetInstance().GetUserDefCSharpImage(),"UserDefCSharp.Move");
+	ScriptInstance->OnFrame();
 }
 
 void OnFrame()
