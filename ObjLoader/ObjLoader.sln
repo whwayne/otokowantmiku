@@ -4,16 +4,20 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjLoader", "ObjLoader\ObjLoader.vcproj", "{437E8B66-1CDB-4221-A498-17E4A6D0FE08}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6E844B66-4E5E-4615-8BB1-A1DE9CCE94AD} = {6E844B66-4E5E-4615-8BB1-A1DE9CCE94AD}
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C} = {846682D2-A1A7-42B6-984E-A229CA9AC13C}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptFeature", "ScriptFeature\ScriptFeature.vcproj", "{6E844B66-4E5E-4615-8BB1-A1DE9CCE94AD}"
 	ProjectSection(ProjectDependencies) = postProject
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C} = {846682D2-A1A7-42B6-984E-A229CA9AC13C}
 		{98D289F4-46FF-477A-AAD2-9EFB3310EBD8} = {98D289F4-46FF-477A-AAD2-9EFB3310EBD8}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmono", "extlibs\mono-2.10.8\msvc\libmono.vcproj", "{CB0D9E92-293C-439C-9AC7-C5F59B6E0771}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptRuntimeLibrary", "ScriptRuntimeLibrary\ScriptRuntimeLibrary.csproj", "{98D289F4-46FF-477A-AAD2-9EFB3310EBD8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MikuCore", "MikuCore\MikuCore.vcproj", "{846682D2-A1A7-42B6-984E-A229CA9AC13C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +139,30 @@ Global
 		{98D289F4-46FF-477A-AAD2-9EFB3310EBD8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{98D289F4-46FF-477A-AAD2-9EFB3310EBD8}.Release|Win32.ActiveCfg = Release|Any CPU
 		{98D289F4-46FF-477A-AAD2-9EFB3310EBD8}.Release|x64.ActiveCfg = Release|Any CPU
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug_eglib|Any CPU.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug_eglib|Mixed Platforms.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug_eglib|Mixed Platforms.Build.0 = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug_eglib|Win32.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug_eglib|Win32.Build.0 = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug_eglib|x64.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug|Win32.Build.0 = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Debug|x64.ActiveCfg = Debug|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release_eglib|Any CPU.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release_eglib|Mixed Platforms.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release_eglib|Mixed Platforms.Build.0 = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release_eglib|Win32.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release_eglib|Win32.Build.0 = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release_eglib|x64.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release|Any CPU.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release|Win32.ActiveCfg = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release|Win32.Build.0 = Release|Win32
+		{846682D2-A1A7-42B6-984E-A229CA9AC13C}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
