@@ -26,6 +26,10 @@ namespace Core
 			m_typeName = 0;
 		}
 
+		const char* GetTypeName() const
+		{
+			return m_typeName;
+		}
 	private:
 		Fcc m_fcc;
 		const char* m_typeName;
