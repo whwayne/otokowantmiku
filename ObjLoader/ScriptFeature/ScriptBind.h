@@ -11,7 +11,7 @@ namespace App
 #define __Scriptbind \
 public: \
 void SetMonoObj(MonoObject* pObj){m_ScriptBind.SetMonoObj(pObj);}\
-MonoObject* GetMonoObj(){m_ScriptBind.GetMonoObj();}\
+MonoObject* GetMonoObj(){return m_ScriptBind.GetMonoObj();}\
 private: \
 ScriptBind m_ScriptBind;\
 

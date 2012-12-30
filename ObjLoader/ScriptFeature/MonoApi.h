@@ -12,6 +12,8 @@ MONO_API( MonoImage* ,    mono_assembly_get_image ,     (MonoAssembly *assembly)
 MONO_API( MonoObject* ,   mono_runtime_invoke, (MonoMethod *method, void *obj, void **params, MonoObject **exc))\
 MONO_API( MonoClass* ,    mono_class_from_name_case ,(MonoImage *image, const char* name_space, const char *name))\
 MONO_API( MonoClass* ,    mono_class_from_name ,(MonoImage *image, const char* name_space, const char *name))\
+MONO_API( mono_bool  ,    mono_class_is_subclass_of ,(MonoClass *klass, MonoClass *klassc,mono_bool check_interfaces))\
+MONO_API( MonoClass*,     mono_class_get_parent , (MonoClass *klass))\
 MONO_API( MonoObject* ,   mono_object_new, (MonoDomain *domain, MonoClass *klass))\
 MONO_API( MonoClass* ,    mono_object_get_class, (MonoObject *obj))\
 MONO_API( void ,	      mono_runtime_object_init, (MonoObject *obj))\

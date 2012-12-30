@@ -1,10 +1,19 @@
 #include "ScriptClass.h"
+#include <assert.h>
 
 namespace App
 {
-	void ScriptClass::Init( MonoImage* pImage,const std::string& namespaceName ,const std::string& className)
+	bool ScriptClass::Init( MonoImage* pImage,const std::string& namespaceName ,const std::string& className)
 	{
 		m_pClass = mono_class_from_name(pImage,namespaceName.c_str(),className.c_str());
+		if (m_pClass)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	MonoMethod*  ScriptClass::GetMethod( const std::string& sig)

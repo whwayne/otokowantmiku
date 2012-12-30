@@ -3,4 +3,4 @@
 #include <string>
 #include <vector>
 
-std::vector<std::string> Util_StrToken(const std::string& Str,std::string& Token);
+std::vector<std::string> Util_StrToken(std::string Str,std::string& Token);

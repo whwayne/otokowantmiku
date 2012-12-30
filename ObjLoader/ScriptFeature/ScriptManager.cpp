@@ -1,7 +1,6 @@
 #include "PreCompiledHeaders.h"
 #include "ScriptManager.h"
 #include "MonoFunRegist.h"
-#include "ScriptClass.h"
 #include "../MikuCore/UtilStr.h"
 #include "../MikuCore/Memory.h"
 
@@ -28,18 +27,23 @@ namespace App
 		
 		LoadAssemblies();
 		RegistInternalCalls();
+
+		LoadEntryBase();
 	}
 
 	void ScriptGeneralManager::LoadAssemblies()
 	{
 	    MonoDomain* pDomain =  mono_domain_get();
 		MonoAssembly* pAssemly = mono_domain_assembly_open(pDomain,g_csRuntimeLibrary); 
-		m_pRuntimeLibery = mono_assembly_get_image(pAssemly);
+		m_pRuntimeLibrary = mono_assembly_get_image(pAssemly);
+		pAssemly = mono_domain_assembly_open(pDomain,g_csUserDef); 
+		m_pUserDef = mono_assembly_get_image(pAssemly);
 	}
 
 	ScriptGeneralManager::ScriptGeneralManager()
 		:monoDLL(NULL)
-		,m_pRuntimeLibery(NULL)
+		,m_pRuntimeLibrary(NULL)
+		,m_pUserDef(NULL)
 	{
 
 	}
@@ -100,11 +104,33 @@ namespace App
 		else
 		{
 			ScriptClass* pSClass = o_new(App::ScriptClass);
-			pSClass->Init( pImage,  name[0] ,name[2]);
-
-			m_mScriptClassCache.insert(std::pair<std::string,ScriptClass*>(className,pSClass));
-			return pSClass;
+			if ( pSClass->Init( pImage,  name[0] ,name[1]) )
+			{
+				m_mScriptClassCache.insert(std::pair<std::string,ScriptClass*>(className,pSClass));
+				return pSClass;
+			}
+			return NULL;			
 		}
 	}
+
+	ScriptClass* ScriptGeneralManager::GetScriptClass( const std::string& className )
+	{
+		ScriptClass* pRet = NULL;
+		pRet = GetScriptClass(className,m_pRuntimeLibrary);
+		if ( pRet )
+		{
+			return pRet;
+		}
+		else
+		{
+			return GetScriptClass(className,m_pUserDef);
+		}
+	}
+
+	void ScriptGeneralManager::LoadEntryBase()
+	{
+		m_EntryBase.Init( m_pRuntimeLibrary , "ScriptRuntimeLibrary" , "ScriptEntry" );
+	}
+
 }
 

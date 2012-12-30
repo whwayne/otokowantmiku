@@ -3,6 +3,8 @@
 
 #include "MonoApi.h"
 #include "MonoType.h"
+#include "ScriptManager.h"
+#include <assert.h>
 
 namespace App
 {
@@ -32,9 +34,24 @@ namespace App
 	}
 
 	template <typename T>
-	MonoObject* CppObjToScriptObj(T& cppObj)
+	MonoObject* CppObjToScriptObj(T& cppObj,const char* scriptClassName)
 	{
-		return cppObj.GetMonoObj();
+		MonoObject* pRet = NULL;
+		pRet = cppObj.GetMonoObj();
+		if (pRet)
+		{
+			return pRet;
+		}
+		else
+		{
+			ScriptClass* pClass = NULL;
+			pClass = ScriptGeneralManager::GetInstance().GetScriptClass(scriptClassName);
+			assert(pClass);
+		    MonoObject* pObj =	mono_object_new( mono_domain_get(),pClass->GetMonoClass() );
+			assert(pObj);
+			MonoCppBind<T>(cppObj,pObj);
+			return cppObj.GetMonoObj();
+		}
 	}
 }
 #endif
