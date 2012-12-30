@@ -21,6 +21,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MikuCore", "MikuCore\MikuCore.vcproj", "{846682D2-A1A7-42B6-984E-A229CA9AC13C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDefCSharp", "UserDefCSharp\UserDefCSharp.csproj", "{1FF0ACA4-6505-42B9-8036-43E5A55FCDF3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{98D289F4-46FF-477A-AAD2-9EFB3310EBD8} = {98D289F4-46FF-477A-AAD2-9EFB3310EBD8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
