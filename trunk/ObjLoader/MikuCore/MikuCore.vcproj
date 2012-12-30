@@ -185,6 +185,10 @@
 			Name="Core"
 			>
 			<File
+				RelativePath=".\Fcc.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Memory.cpp"
 				>
 			</File>
@@ -202,6 +206,18 @@
 			</File>
 			<File
 				RelativePath=".\Res.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Rtti.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Rtti.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RttiMacros.h"
 				>
 			</File>
 			<Filter
