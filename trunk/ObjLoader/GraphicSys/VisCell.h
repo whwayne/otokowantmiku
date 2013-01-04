@@ -1,7 +1,7 @@
 #pragma once
 #include <list>
-#include "Ptr.h"
-#include "AABBox.h"
+#include "../MikuCore/Ptr.h"
+#include "../Util/AABBox.h"
 #include "Renderable.h"
 
 class VisCell

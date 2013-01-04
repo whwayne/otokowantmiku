@@ -3,7 +3,7 @@
 #include <assert.h>
 #include "Memory.h"
 #include "Loader.h"
-#include "D3D9Res.h"
+#include "../GraphicSys/D3D9Res.h"
 #include "ResGenerator.h"
 
 //this is a warpper class of loaders and res for the muti thread loading

@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MikuCore"
-	ProjectGUID="{846682D2-A1A7-42B6-984E-A229CA9AC13C}"
-	RootNamespace="MikuCore"
+	Name="Util"
+	ProjectGUID="{A3ED1AAF-A72A-4146-813E-27674E544A25}"
+	RootNamespace="Math"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -144,22 +144,110 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Math"
+			Name="Containers"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\Util\HashTable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Util\OctTree.h"
+				>
+			</File>
 		</Filter>
 		<Filter
-			Name="Util"
+			Name="Math"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\UtilStr.cpp"
+				RelativePath="..\Util\AABBox.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilStr.h"
+				RelativePath="..\Util\AABBox.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\BSphere.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Float2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Float3.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Float4.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Float4.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Frustum.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Frustum.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\InterSectUtil.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\InterSectUtil.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\MathDefine.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\MathDefine.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Matrix44.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Matrix44.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\OctTree.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Plane.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Plane.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Point.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Quaternion.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Quaternion.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Util\Ray.h"
 				>
 			</File>
 		</Filter>
@@ -168,130 +256,6 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-		</Filter>
-		<Filter
-			Name="IO"
-			>
-			<File
-				RelativePath=".\IO.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\IO.h"
-				>
-			</File>
-			<File
-				RelativePath=".\LoaderThread.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\LoaderThread.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ResGenerator.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ResGenerator.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ResourceMgr.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\ResourceMgr.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Core"
-			>
-			<File
-				RelativePath=".\Fcc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Memory.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Memory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\MemoryConfig.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MemoryConfig.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Ptr.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Ptr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Res.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Rtti.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Rtti.h"
-				>
-			</File>
-			<File
-				RelativePath=".\RttiMacros.h"
-				>
-			</File>
-			<Filter
-				Name="Thread"
-				>
-				<File
-					RelativePath=".\CriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Event.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Interlocked.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Loader.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Loader.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Message.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Message.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Thread.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Thread.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"

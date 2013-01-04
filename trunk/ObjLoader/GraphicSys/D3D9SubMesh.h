@@ -5,7 +5,7 @@
 #include "D3D9IndexBuffer.h"
 #include "D3D9VertexLayout.h"
 #include "ObjLoader.h"
-#include "Ptr.h"
+#include "../MikuCore/Ptr.h"
 
 class D3D9SubMesh:public D3D9Res
 {

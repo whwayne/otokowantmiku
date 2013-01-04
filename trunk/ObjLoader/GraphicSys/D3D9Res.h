@@ -1,6 +1,6 @@
 #pragma once
-#include "Res.h"
-#include "Loader.h"
+#include "..\MikuCore\Res.h"
+#include "..\MikuCore\Loader.h"
 
 class D3D9Res:public Res
 {

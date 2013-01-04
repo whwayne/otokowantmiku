@@ -1,5 +1,5 @@
 #pragma once
-#include "ResGenerator.h"
+#include "../MikuCore/ResGenerator.h"
 #include "D3D9Mesh.h"
 #include "ObjLoader.h"
 #include "Memory.h"

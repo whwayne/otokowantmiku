@@ -1,7 +1,7 @@
 #pragma once
 #include "D3D9Device.h"
 #include "D3D9Res.h"
-#include "AABBox.h"
+#include "../Util/AABBox.h"
 
 // A structure for our custom vertex type
 struct CUSTOMVERTEX

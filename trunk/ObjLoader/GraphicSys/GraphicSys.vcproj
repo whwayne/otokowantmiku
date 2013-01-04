@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MikuCore"
-	ProjectGUID="{846682D2-A1A7-42B6-984E-A229CA9AC13C}"
-	RootNamespace="MikuCore"
+	Name="GraphicSys"
+	ProjectGUID="{7A00F49D-D366-428C-8403-A6909E2A7FB7}"
+	RootNamespace="GraphicSys"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -144,154 +144,198 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Math"
+			Name="Graphic"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\CullSystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\CullSystem.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FixedRenderer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\FixedRenderer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FixedRenderPipeline.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\FixedRenderPipeline.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GraphicMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\GraphicMgr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MeshRenderable.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MeshRenderable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Renderable.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Renderable.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Renderer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Renderer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RenderPipeline.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\RenderPipeline.h"
+				>
+			</File>
+			<File
+				RelativePath=".\VisCell.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\VisCell.h"
+				>
+			</File>
 		</Filter>
 		<Filter
-			Name="Util"
+			Name="FoundtionD3D"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\UtilStr.cpp"
+				RelativePath=".\D3D9Device.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\UtilStr.h"
+				RelativePath=".\D3D9Device.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9IndexBuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9IndexBuffer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9Mesh.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9Mesh.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9SubMesh.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9SubMesh.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9Texture.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9Texture.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9VertexBuffer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9VertexBuffer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9VertexComponent.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9VertexComponent.h"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9VertexLayout.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\D3D9VertexLayout.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dds.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UtilD3D9.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\UtilTex.cpp"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="资源文件"
+			Name="GraphicRes"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-		</Filter>
-		<Filter
-			Name="IO"
-			>
 			<File
-				RelativePath=".\IO.cpp"
+				RelativePath=".\D3D9Res.h"
 				>
 			</File>
 			<File
-				RelativePath=".\IO.h"
+				RelativePath=".\MeshResGenerator.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderThread.cpp"
+				RelativePath=".\MeshResGenerator.h"
 				>
 			</File>
 			<File
-				RelativePath=".\LoaderThread.h"
+				RelativePath=".\ObjLoader.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ResGenerator.cpp"
+				RelativePath=".\ObjLoader.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ResGenerator.h"
+				RelativePath=".\TexLoader.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\ResourceMgr.cpp"
+				RelativePath=".\TexLoader.h"
 				>
 			</File>
-			<File
-				RelativePath=".\ResourceMgr.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Core"
-			>
-			<File
-				RelativePath=".\Fcc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Memory.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Memory.h"
-				>
-			</File>
-			<File
-				RelativePath=".\MemoryConfig.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\MemoryConfig.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Ptr.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Ptr.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Res.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Rtti.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Rtti.h"
-				>
-			</File>
-			<File
-				RelativePath=".\RttiMacros.h"
-				>
-			</File>
-			<Filter
-				Name="Thread"
-				>
-				<File
-					RelativePath=".\CriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Event.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Interlocked.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Loader.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Loader.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Message.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Message.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Thread.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Thread.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
