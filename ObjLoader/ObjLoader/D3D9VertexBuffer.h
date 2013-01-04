@@ -53,7 +53,7 @@ public:
 	{
 		return &m_pD3D9VertexBuffer;
 	}
-	void SetBBox(aabbox& bbox)
+	void SetBBox(const aabbox& bbox)
 	{
 		m_LocalBBox = bbox;
 	}

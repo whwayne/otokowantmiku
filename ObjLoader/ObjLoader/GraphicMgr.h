@@ -24,7 +24,7 @@ public:
 		return m_RenderableArries[type];
 	}
 
-	void AttachRenderable(Ptr<Renderable>& pRenderable);
+	void AttachRenderable(const Ptr<Renderable>& pRenderable);
 
 	Renderer* GetRenderer()
 	{

@@ -68,7 +68,7 @@ void GraphicMgr::OnFrame( float deltaTime )
 	m_pPipeline->RenderRenderables();
 }
 
-void GraphicMgr::AttachRenderable( Ptr<Renderable>& pRenderable )
+void GraphicMgr::AttachRenderable(const Ptr<Renderable>& pRenderable )
 {
 	GetRenderableList(pRenderable->GetRenderType()).push_back(pRenderable);
 	m_pCullSystem->AttachRenderable(pRenderable);

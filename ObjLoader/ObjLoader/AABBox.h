@@ -8,17 +8,17 @@ class aabbox
 {
 public:
 	aabbox();
-	aabbox(aabbox& box);
-	aabbox(point& max,point& min);
+	aabbox(const aabbox& box);
+	aabbox(const point& max,const point& min);
 	/// assignment operator
 	void operator=(const aabbox& rhs);
 
-	void   SetMax(point& max);
-	void   SetMin(point& min);
+	void   SetMax(const point& max);
+	void   SetMin(const point& min);
 	point& GetMax() ;
 	point& GetMin() ;
 
-	InterSectResult InterSect(aabbox& box);
+	InterSectResult InterSect(const aabbox& box);
 
 	InterSectResult InterSect(const matrix44& viewProj);
 	std::vector<point> FormPoint();
@@ -38,14 +38,14 @@ inline aabbox::aabbox()
 
 }
 
-inline aabbox::aabbox( aabbox& box )
+inline aabbox::aabbox(const aabbox& box )
 	:mMax(box.mMax)
 	,mMin(box.mMin)
 {
 
 }
 
-inline aabbox::aabbox( point& max,point& min )
+inline aabbox::aabbox(const point& max,const point& min )
 	:mMax(max)
 	,mMin(min)
 {
@@ -64,12 +64,12 @@ inline point& aabbox::GetMin()
 	return mMin;
 }
 
-inline void aabbox::SetMax( point& max )
+inline void aabbox::SetMax(const point& max )
 {	
 	mMax = max;
 }
 
-inline void aabbox::SetMin( point& min )
+inline void aabbox::SetMin(const point& min )
 {
 	mMin = min;
 }

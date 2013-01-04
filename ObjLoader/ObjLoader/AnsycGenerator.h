@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <assert.h>
 #include "Memory.h"
 #include "Loader.h"
 #include "D3D9Res.h"
@@ -62,6 +63,7 @@ private:
 template<typename tLoader,typename tRes>
 Res* AnsycGenerator<tLoader, tRes>::GeneratorRes( const std::string& path )
 {
+	assert(strcmp(path.c_str(),"")==0);
 	m_Process = Processing;
 
 	m_pLoader = o_new(tLoader);

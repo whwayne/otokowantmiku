@@ -96,7 +96,7 @@ namespace App
 	{
 		std::map<std::string,ScriptClass*>::iterator iter = m_mScriptClassCache.find(className);
 
-		std::vector<std::string> name = Util_StrToken(className,std::string("."));
+		std::vector<std::string> name = Util_StrToken(className,".");
 		if (iter!=m_mScriptClassCache.end())
 		{
 			return iter->second;
@@ -108,6 +108,10 @@ namespace App
 			{
 				m_mScriptClassCache.insert(std::pair<std::string,ScriptClass*>(className,pSClass));
 				return pSClass;
+			}
+			else
+			{
+				o_delete(pSClass);
 			}
 			return NULL;			
 		}

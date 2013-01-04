@@ -21,6 +21,8 @@
 #include "OctTree.h"
 #include "Matrix44.h"
 
+#include "Actor.h"
+
 #include "../ScriptFeature/ScriptManager.h"
 #include "../ScriptFeature/ScriptInstance.h"
 
@@ -54,9 +56,11 @@ void InitGeometry()
 // 
 // 	App::ScriptGeneralManager::GetInstance().CallStaticMethod(pFoo,NULL);
 
-	App::ScriptInstance* ScriptInstance = new App::ScriptInstance();
+	App::ScriptInstance* ScriptInstance = o_new( App::ScriptInstance);
 	ScriptInstance->Init(App::ScriptGeneralManager::GetInstance().GetUserDefCSharpImage(),"UserDefCSharp.Move");
 	ScriptInstance->OnFrame();
+	//------------------------------------------APP--------------------------------------
+	Actor* pAct = new Actor();
 }
 
 void OnFrame()
@@ -120,7 +124,6 @@ HRESULT InitD3D( HWND hWnd )
 	// Turn on the zbuffer
 	D3D9Device::GetInstance().GetD3DDevice9()->SetRenderState( D3DRS_ZENABLE, TRUE );
 
-	//	D3D9Device::GetInstance().GetD3DDevice9()->SetRenderState( D3DRS_FILLMODE,D3DFILL_WIREFRAME );
 	return S_OK;
 }
 
@@ -187,6 +190,7 @@ int main()
 		WS_OVERLAPPEDWINDOW, 100, 100, 300, 300,
 		NULL, NULL, wc.hInstance, NULL );
 
+	Memory::SetUpHeaps();
 
 	InitD3D( hWnd );
 
@@ -214,7 +218,7 @@ int main()
 			Render();
 		}
 	}
-
 	UnregisterClass( "D3D Tutorial", wc.hInstance );
+	//Memory::DestoryHeaps();
 	return 0;
 }

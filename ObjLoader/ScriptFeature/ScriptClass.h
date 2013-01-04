@@ -1,4 +1,5 @@
 #pragma once
+#include "..\MikuCore\RttiMacros.h"
 #include "PreCompiledHeaders.h"
 #include "MonoApi.h"
 #include "MonoType.h"
@@ -11,6 +12,7 @@ namespace App
 {
 	class ScriptClass
 	{
+		__DeclareClass(ScriptClass)
 	public:
 		ScriptClass();
 		virtual ~ScriptClass();

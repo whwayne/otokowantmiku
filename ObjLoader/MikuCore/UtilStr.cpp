@@ -1,6 +1,6 @@
 #include "UtilStr.h"
 
-std::vector<std::string> Util_StrToken(std::string Str,std::string& Token )
+std::vector<std::string> Util_StrToken(std::string Str,const std::string& Token )
 {
 	std::vector<std::string> result;
 	
