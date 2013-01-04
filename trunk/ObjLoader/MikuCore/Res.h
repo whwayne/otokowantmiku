@@ -1,7 +1,7 @@
 #pragma once
-#include <Windows.h>
-#include "Memory.h"
 
+#include "Memory.h"
+#include <Windows.h>
 
 
 class Res

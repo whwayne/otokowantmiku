@@ -24,7 +24,7 @@ public:
 		return m_RootNode; 
 	}
 
-	void AttachRenderable(Ptr<Renderable>& renderable);
+	void AttachRenderable(const Ptr<Renderable>& renderable);
 
 	void Cull( Frustum& frus, TreeNode<VisCell>& node, std::vector<std::list<Ptr<Renderable>>>& outRenderables);
 
@@ -44,7 +44,7 @@ protected:
 	void BuildOctTree(TreeNode<VisCell>& node);
 	void DestoryOctTree(TreeNode<VisCell>& node);
 
-	TreeNode<VisCell>* OctTreeBoundCheck(TreeNode<VisCell>& node,aabbox& box);
+	TreeNode<VisCell>* OctTreeBoundCheck(TreeNode<VisCell>& node,const aabbox& box);
 
 	TreeNode<VisCell> m_RootNode;
 	aabbox            m_CullArea;

@@ -104,7 +104,7 @@ void CullSystem::BuildOctTree( TreeNode<VisCell>& node )
 	}
 }
 
-void CullSystem::AttachRenderable( Ptr<Renderable>& renderable )
+void CullSystem::AttachRenderable(const Ptr<Renderable>& renderable )
 {
 	TreeNode<VisCell>* pContentNode = NULL;
 
@@ -115,7 +115,7 @@ void CullSystem::AttachRenderable( Ptr<Renderable>& renderable )
 	}
 }
 
-TreeNode<VisCell>* CullSystem::OctTreeBoundCheck( TreeNode<VisCell>& node,aabbox& box )
+TreeNode<VisCell>* CullSystem::OctTreeBoundCheck( TreeNode<VisCell>& node,const aabbox& box )
 {
 	if (node.GetContent().GetAABB().InterSect(box)==INTERSECTIN)
 	{

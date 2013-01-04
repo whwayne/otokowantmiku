@@ -3,7 +3,6 @@
 #include "Res.h"
 #include <map>
 #include <string>
-#include "Memory.h"
 #include "ResGenerator.h"
 #include "MeshResGenerator.h"
 #include "LoaderThread.h"

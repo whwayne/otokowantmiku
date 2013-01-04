@@ -11,6 +11,9 @@ edit by zhaoxiaohang 2012.6.23 1.0v
 
 #define __DeclareClass(type)\
 static Core::Rtti RTTI;\
+public:\
+void * operator new(size_t size){void *p =  Memory::AllocMemory (Memory::OBJECT, size);return (p);}\
+void operator delete(void *p){Memory::FreeMemory(Memory::OBJECT,p);}
 
 
 #define __DeclareSubClass(type,baseType)\

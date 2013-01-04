@@ -45,9 +45,10 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
+				WarnAsError="false"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -590,6 +591,18 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Actor"
+			>
+			<File
+				RelativePath=".\Actor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Actor.h"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>

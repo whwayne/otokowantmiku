@@ -3,6 +3,7 @@
 
 namespace App
 {
+	__ImplementClass(ScriptClass,'SCPT',NULL)
 	bool ScriptClass::Init( MonoImage* pImage,const std::string& namespaceName ,const std::string& className)
 	{
 		m_pClass = mono_class_from_name(pImage,namespaceName.c_str(),className.c_str());

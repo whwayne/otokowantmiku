@@ -44,9 +44,9 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -197,6 +197,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\MemoryConfig.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MemoryConfig.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Ptr.cpp"
 				>
 			</File>
@@ -229,6 +237,10 @@
 				</File>
 				<File
 					RelativePath=".\Event.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Interlocked.h"
 					>
 				</File>
 				<File
