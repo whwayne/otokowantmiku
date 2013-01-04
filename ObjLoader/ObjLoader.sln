@@ -3,7 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObjLoader", "ObjLoader\ObjLoader.vcproj", "{437E8B66-1CDB-4221-A498-17E4A6D0FE08}"
 	ProjectSection(ProjectDependencies) = postProject
+		{5133CE57-5FB0-4F82-805C-2433195AA37C} = {5133CE57-5FB0-4F82-805C-2433195AA37C}
 		{6E844B66-4E5E-4615-8BB1-A1DE9CCE94AD} = {6E844B66-4E5E-4615-8BB1-A1DE9CCE94AD}
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7} = {7A00F49D-D366-428C-8403-A6909E2A7FB7}
+		{A3ED1AAF-A72A-4146-813E-27674E544A25} = {A3ED1AAF-A72A-4146-813E-27674E544A25}
 		{846682D2-A1A7-42B6-984E-A229CA9AC13C} = {846682D2-A1A7-42B6-984E-A229CA9AC13C}
 	EndProjectSection
 EndProject
@@ -26,6 +29,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDefCSharp", "UserDefCSh
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "App", "App\App.vcproj", "{5133CE57-5FB0-4F82-805C-2433195AA37C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicSys", "GraphicSys\GraphicSys.vcproj", "{7A00F49D-D366-428C-8403-A6909E2A7FB7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Util", "Util\Util.vcproj", "{A3ED1AAF-A72A-4146-813E-27674E544A25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptLibrary", "ScriptLibrary", "{A24777E0-CA44-476A-867A-2341F31DD4BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtendLibs", "ExtendLibs", "{5BE88053-1167-47FD-96B2-2B868A2BA418}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -219,8 +230,61 @@ Global
 		{5133CE57-5FB0-4F82-805C-2433195AA37C}.Release|Win32.ActiveCfg = Release|Win32
 		{5133CE57-5FB0-4F82-805C-2433195AA37C}.Release|Win32.Build.0 = Release|Win32
 		{5133CE57-5FB0-4F82-805C-2433195AA37C}.Release|x64.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug_eglib|Any CPU.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug_eglib|Mixed Platforms.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug_eglib|Mixed Platforms.Build.0 = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug_eglib|Win32.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug_eglib|Win32.Build.0 = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug_eglib|x64.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug|Win32.Build.0 = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Debug|x64.ActiveCfg = Debug|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release_eglib|Any CPU.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release_eglib|Mixed Platforms.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release_eglib|Mixed Platforms.Build.0 = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release_eglib|Win32.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release_eglib|Win32.Build.0 = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release_eglib|x64.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release|Any CPU.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release|Win32.ActiveCfg = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release|Win32.Build.0 = Release|Win32
+		{7A00F49D-D366-428C-8403-A6909E2A7FB7}.Release|x64.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug_eglib|Any CPU.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug_eglib|Mixed Platforms.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug_eglib|Mixed Platforms.Build.0 = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug_eglib|Win32.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug_eglib|Win32.Build.0 = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug_eglib|x64.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug|Win32.Build.0 = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Debug|x64.ActiveCfg = Debug|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release_eglib|Any CPU.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release_eglib|Mixed Platforms.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release_eglib|Mixed Platforms.Build.0 = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release_eglib|Win32.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release_eglib|Win32.Build.0 = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release_eglib|x64.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release|Any CPU.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release|Win32.ActiveCfg = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release|Win32.Build.0 = Release|Win32
+		{A3ED1AAF-A72A-4146-813E-27674E544A25}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1FF0ACA4-6505-42B9-8036-43E5A55FCDF3} = {A24777E0-CA44-476A-867A-2341F31DD4BF}
+		{98D289F4-46FF-477A-AAD2-9EFB3310EBD8} = {A24777E0-CA44-476A-867A-2341F31DD4BF}
+		{CB0D9E92-293C-439C-9AC7-C5F59B6E0771} = {5BE88053-1167-47FD-96B2-2B868A2BA418}
 	EndGlobalSection
 EndGlobal

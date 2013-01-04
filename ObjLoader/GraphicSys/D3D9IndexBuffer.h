@@ -1,7 +1,7 @@
 #pragma once
 #include "D3D9Device.h"
 #include "D3D9Res.h"
-#include "Ptr.h"
+#include "..\MikuCore\Ptr.h"
 
 
 

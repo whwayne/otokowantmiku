@@ -1,10 +1,10 @@
 #pragma once
-#include "Ptr.h"
-#include "Res.h"
+#include "../MikuCore/Ptr.h"
+#include "../MikuCore/Res.h"
 #include "Renderer.h"
-#include "AABBox.h"
+#include "../Util/AABBox.h"
 #include "D3D9SubMesh.h"
-#include "Matrix44.h"
+#include "../Util/Matrix44.h"
 
 enum RenderType
 {

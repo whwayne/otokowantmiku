@@ -1,10 +1,10 @@
 #pragma once
 #include "VisCell.h"
-#include "OctTree.h"
+#include "..\Util\OctTree.h"
 #include "Renderer.h"
-#include "Memory.h"
-#include "Frustum.h"
-#include "Matrix44.h"
+#include "..\MikuCore\Memory.h"
+#include "..\Util\Frustum.h"
+#include "..\Util\Matrix44.h"
 #include <list>
 
 //- this is not a singleton class,because it may be used many times 

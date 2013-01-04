@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include "ResGenerator.h"
-#include "MeshResGenerator.h"
+#include "../GraphicSys/MeshResGenerator.h"
 #include "LoaderThread.h"
 
 class ResourceMgr

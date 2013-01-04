@@ -1,6 +1,6 @@
 #pragma once
 #include "D3D9Device.h"
-#include "Ptr.h"
+#include "../MikuCore/Ptr.h"
 
 
 

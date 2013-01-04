@@ -21,7 +21,7 @@
 #include "OctTree.h"
 #include "Matrix44.h"
 
-#include "Actor.h"
+#include "..\App\Actor.h"
 
 #include "../ScriptFeature/ScriptManager.h"
 #include "../ScriptFeature/ScriptInstance.h"
@@ -34,7 +34,7 @@ Renderable* pRenderable;
 TexLoader* pTexLoader;
 D3D9Texture* pTex;
 
-
+using namespace FrameWork;
 void InitGeometry()
 {
 	GraphicMgr::GetInstance().Init();

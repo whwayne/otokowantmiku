@@ -1,6 +1,6 @@
 #pragma once
 #include "D3D9Device.h"
-#include "Res.h"
+#include "../MikuCore/Res.h"
 #include "D3D9VertexComponent.h"
 #include <vector>
 

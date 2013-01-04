@@ -1,5 +1,5 @@
 #pragma once
-#include "Loader.h"
+#include "../MikuCore/Loader.h"
 #include "Memory.h"
 #include "D3D9VertexComponent.h"
 #include <d3d9.h>

@@ -1,7 +1,7 @@
 #pragma once
 #include "Renderable.h"
 #include "Renderer.h"
-#include "Ptr.h"
+#include "../MikuCore/Ptr.h"
 #include <vector>
 #include <list>
 
