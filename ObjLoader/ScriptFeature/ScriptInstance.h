@@ -3,12 +3,13 @@
 #include "MonoApi.h"
 #include "MonoType.h"
 #include "ScriptBind.h"
+#include "..\MikuCore\Res.h"
 
 namespace App
 {
 	
 	class ScriptClass;
-	class ScriptInstance
+	class ScriptInstance:public Res
 	{
 		__Scriptbind
 	public:

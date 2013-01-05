@@ -18,6 +18,7 @@ namespace App
 	{
 
 	}
+
 	void ScriptInstance::Init( MonoImage* pImage,const char* cclass )
 	{
 		CppObjToScriptObj(*this,cclass);
