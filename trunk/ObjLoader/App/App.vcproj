@@ -148,12 +148,28 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\MeshRenderComponent.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MeshRenderComponent.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="ScriptFeature"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\LogicComponent.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LogicComponent.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="AppFrameWork"
