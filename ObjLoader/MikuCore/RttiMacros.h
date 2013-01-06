@@ -10,8 +10,8 @@ edit by zhaoxiaohang 2012.6.23 1.0v
 #include "Fcc.h"
 
 #define __DeclareClass(type)\
-static Core::Rtti RTTI;\
 public:\
+static Core::Rtti RTTI;\
 void * operator new(size_t size){void *p =  Memory::AllocMemory (Memory::OBJECT, size);return (p);}\
 void operator delete(void *p){Memory::FreeMemory(Memory::OBJECT,p);}
 

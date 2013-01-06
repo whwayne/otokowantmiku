@@ -8,12 +8,14 @@
 
 namespace App
 {
+
+
 #define __Scriptbind \
 public: \
 void SetMonoObj(MonoObject* pObj){m_ScriptBind.SetMonoObj(pObj);}\
 MonoObject* GetMonoObj(){return m_ScriptBind.GetMonoObj();}\
 private: \
-ScriptBind m_ScriptBind;\
+App::ScriptBind m_ScriptBind;\
 
 
 

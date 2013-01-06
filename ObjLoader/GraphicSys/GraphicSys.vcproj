@@ -299,6 +299,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\UtilD3D9.h"
+				>
+			</File>
+			<File
 				RelativePath=".\UtilTex.cpp"
 				>
 			</File>
