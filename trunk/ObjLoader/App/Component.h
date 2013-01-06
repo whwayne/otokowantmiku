@@ -2,7 +2,7 @@
 #include "..\MikuCore\Res.h"
 #include "..\MikuCore\Ptr.h"
 #include "..\MikuCore\RttiMacros.h"
-
+#include "..\ScriptFeature\ScriptBind.h"
 
 namespace FrameWork
 {
@@ -10,6 +10,8 @@ namespace FrameWork
 	class Component:public Res
 	{
 		__DeclareClass(Component)
+
+		__Scriptbind
 	public:
 		Component();
 		virtual ~Component();

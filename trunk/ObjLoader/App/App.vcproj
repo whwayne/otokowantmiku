@@ -185,11 +185,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ActorManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ActorManager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Component.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\Component.h"
+				>
+			</File>
+			<File
+				RelativePath=".\GameApp.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\GameApp.h"
 				>
 			</File>
 		</Filter>
