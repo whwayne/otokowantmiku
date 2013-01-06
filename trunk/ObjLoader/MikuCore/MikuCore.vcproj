@@ -173,6 +173,10 @@
 			Name="IO"
 			>
 			<File
+				RelativePath=".\HardwareRes.h"
+				>
+			</File>
+			<File
 				RelativePath=".\IO.cpp"
 				>
 			</File>

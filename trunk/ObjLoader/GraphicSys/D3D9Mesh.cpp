@@ -86,7 +86,7 @@ bool D3D9Mesh::SetUp(Loader& loader)
 	
 }
 
-void D3D9Mesh::Copy( D3D9Res& rhs )
+void D3D9Mesh::Copy( HardwareRes& rhs )
 {
 	D3D9Mesh* pSource = (D3D9Mesh*)(&rhs);
 	this->m_SubMeshCount = pSource->m_SubMeshCount;

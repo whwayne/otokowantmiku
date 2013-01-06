@@ -1,12 +1,12 @@
 #pragma once
-#include "..\MikuCore\HardwareRes.h"
+#include "..\MikuCore\Res.h"
 #include "..\MikuCore\Loader.h"
 
-class D3D9Res:public HardwareRes
+class HardwareRes:public Res
 {
 public:
-	D3D9Res(){}
-	virtual ~D3D9Res(){}
+	HardwareRes(){}
+	virtual ~HardwareRes(){}
 	virtual bool SetUp(Loader& loader){return false;}
 	virtual void Copy(HardwareRes& rhs){}
 protected:
