@@ -14,7 +14,7 @@ public:
 public:
 	virtual bool SetUp(Loader& loader);
 
-	virtual void Copy(D3D9Res& rhs)
+	virtual void Copy(HardwareRes& rhs)
 	{
 		D3D9IndexBuffer* ib = (D3D9IndexBuffer*)(&rhs);
 		if (m_pD3D9IndexBuffer!=ib->m_pD3D9IndexBuffer)

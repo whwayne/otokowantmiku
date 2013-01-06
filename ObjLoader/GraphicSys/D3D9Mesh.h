@@ -13,7 +13,7 @@ public:
 	
 	virtual bool SetUp(Loader& loader);
 
-	virtual void Copy(D3D9Res& rhs);
+	virtual void Copy(HardwareRes& rhs);
 
 	Ptr<D3D9SubMesh>* GetSubMeshArray()
 	{

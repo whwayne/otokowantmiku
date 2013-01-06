@@ -61,7 +61,7 @@ public:
 		return m_VertexCount;
 	}
 
-	void Copy(D3D9Res& rhs);
+	void Copy(HardwareRes& rhs);
 protected:
 	Ptr<D3D9VertexBuffer> m_pVB;
 	Ptr<D3D9IndexBuffer>  m_pIB;

@@ -26,7 +26,7 @@ public:
 public:
 	virtual bool SetUp(Loader& loader);
 
-	virtual void Copy(D3D9Res& rhs)
+	virtual void Copy(HardwareRes& rhs)
 	{
 		D3D9VertexBuffer* vb = (D3D9VertexBuffer*)(&rhs);
 		if (m_pD3D9VertexBuffer!=vb->m_pD3D9VertexBuffer)

@@ -12,7 +12,7 @@ D3D9SubMesh::~D3D9SubMesh()
 
 }
 
-void D3D9SubMesh::Copy( D3D9Res& rhs )
+void D3D9SubMesh::Copy( HardwareRes& rhs )
 {
 // 	D3D9SubMesh* pSource = (D3D9SubMesh*)(&rhs);
 // 	this->m_IndexCount = pSource->m_IndexCount;

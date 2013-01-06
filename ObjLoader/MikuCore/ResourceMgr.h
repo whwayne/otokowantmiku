@@ -32,12 +32,12 @@ protected:
 	template<typename tLoader,typename tRes> 
 	void CreateResAnsyc(const std::string& path);
 
-	void ReplaceResource(const std::string& ID,	D3D9Res& res);
+	void ReplaceResource(const std::string& ID,	HardwareRes& res);
 
 	ResourceMgr();
 
 protected:
-	std::map<std::string,Ptr<D3D9Res>> m_ID2ResDic;
+	std::map<std::string,Ptr<HardwareRes>> m_ID2ResDic;
 	std::list<ResGenerator*>       m_pResGenWaitingList;
 
 };
@@ -45,7 +45,7 @@ protected:
 template<typename tLoader,typename tRes> 
 Ptr<Res> ResourceMgr::GetResAnsycByID( const std::string& ID )
 {
-	std::map<std::string,Ptr<D3D9Res>> ::iterator iter = m_ID2ResDic.find(ID);
+	std::map<std::string,Ptr<HardwareRes>> ::iterator iter = m_ID2ResDic.find(ID);
 	if (iter!=m_ID2ResDic.end())
 	{
 		return iter->second.downcast<Res>();
@@ -76,7 +76,7 @@ void ResourceMgr::CreateResAnsyc( const std::string& path )
 template<typename T>
 Ptr<Res> ResourceMgr::GetResByID( const std::string& ID )
 {
-	std::map<std::string,Ptr<D3D9Res>> ::iterator iter = m_ID2ResDic.find(ID);
+	std::map<std::string,Ptr<HardwareRes>> ::iterator iter = m_ID2ResDic.find(ID);
 	if (iter!=m_ID2ResDic.end())
 	{
 		return iter->second;

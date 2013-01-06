@@ -21,9 +21,9 @@ void ResourceMgr::OnBeginFrame()
 	std::list<ResGenerator*>::iterator iter = m_pResGenWaitingList.begin();
 	for(;iter!=m_pResGenWaitingList.end();)
 	{
-		AnsycGenerator<Loader,D3D9Res>* pAG = (AnsycGenerator<Loader,D3D9Res>*)(*iter);
+		AnsycGenerator<Loader,HardwareRes>* pAG = (AnsycGenerator<Loader,HardwareRes>*)(*iter);
 
-		if (pAG->GetProcess()==AnsycGenerator<Loader,D3D9Res>::Complete)
+		if (pAG->GetProcess()==AnsycGenerator<Loader,HardwareRes>::Complete)
 		{
 			ReplaceResource( pAG->GetPath(), *(pAG->GetRes()));
 
@@ -41,9 +41,9 @@ void ResourceMgr::OnBeginFrame()
 	
 }
 
-void ResourceMgr::ReplaceResource( const std::string& ID,D3D9Res& res )
+void ResourceMgr::ReplaceResource( const std::string& ID,HardwareRes& res )
 {
-	std::map<std::string,Ptr<D3D9Res>> ::iterator iter = m_ID2ResDic.find(ID);
+	std::map<std::string,Ptr<HardwareRes>> ::iterator iter = m_ID2ResDic.find(ID);
 	if (iter!=m_ID2ResDic.end())
 	{
 		iter->second->Copy(res);
