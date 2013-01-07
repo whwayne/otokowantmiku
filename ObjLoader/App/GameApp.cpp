@@ -19,8 +19,15 @@ namespace FrameWork
 
 	void GameApp::SetUp( HWND hWnd )
 	{
+		//base
 		Memory::SetUpHeaps();
+		//graphic
 		Util_InitD3D9(hWnd);
+		GraphicMgr::GetInstance().Init();
+		//res
+		LoaderThread::GetInstance().Start();
+		//script
+		App::ScriptGeneralManager::GetInstance().SetupScriptSystem();
 	}
 
 	void GameApp::Exit()

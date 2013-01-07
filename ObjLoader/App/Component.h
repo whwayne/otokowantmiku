@@ -10,7 +10,6 @@ namespace FrameWork
 	class Component:public Res
 	{
 		__DeclareClass(Component)
-
 		__Scriptbind
 	public:
 		Component();

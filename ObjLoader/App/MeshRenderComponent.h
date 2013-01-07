@@ -8,6 +8,7 @@ namespace FrameWork
 {
 	class MeshRenderComponent: public Component
 	{
+		__DeclareSubClass(MeshRenderComponent,Component)
 	public:
 		MeshRenderComponent();
 		virtual ~MeshRenderComponent();
