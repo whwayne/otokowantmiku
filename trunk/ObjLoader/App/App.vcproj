@@ -209,6 +209,22 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="ScriptBind"
+			>
+			<File
+				RelativePath=".\ICall_ScriptRuntime_Actor_Bind.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ICall_ScriptRuntime_ActorMgr_Bind.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ICall_ScriptRuntime_MeshRenderComponent_Bind.cpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>

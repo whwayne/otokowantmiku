@@ -1,13 +1,14 @@
 #pragma once
 #include "Component.h"
 #include "..\ScriptFeature\ScriptInstance.h"
+#include "..\ScriptFeature\ScriptBind.h"
 #include <vector>
 
 namespace FrameWork
 {
 	class LogicComponent:public Component
 	{
-		__DeclareClass(LogicComponent)
+		__DeclareSubClass(LogicComponent,Component)
 	public:
 		LogicComponent();
 		virtual ~LogicComponent();

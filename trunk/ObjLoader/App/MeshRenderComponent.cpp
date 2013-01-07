@@ -4,6 +4,7 @@
 
 namespace FrameWork
 {
+	__ImplementClass(MeshRenderComponent,'MRCM',Component)
 
 	MeshRenderComponent::MeshRenderComponent()
 		:m_pD3D9Mesh(0)

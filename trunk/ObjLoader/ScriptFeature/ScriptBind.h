@@ -23,6 +23,8 @@ App::ScriptBind m_ScriptBind;\
 	{
 	public:
 		ScriptBind()
+			:m_pMonoObj(0)
+			,m_iGcHandle(0)
 		{
 
 		}
