@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <windows.h>
 
 template<typename T>
 int VectorFind(std::vector<T>& vec,T value)
@@ -13,3 +14,5 @@ int VectorFind(std::vector<T>& vec,T value)
 	}
 	return -1;
 }
+
+void __cdecl Format(const char* out,const char* fmtString, ...);

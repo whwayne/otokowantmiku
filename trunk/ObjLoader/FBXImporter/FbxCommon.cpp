@@ -119,7 +119,7 @@ void ProcessMesh( FbxNode* node )
 		vector<D3DXVECTOR3> m_ObjVerPosArr;
 		vector<D3DXVECTOR3> m_ObjVerNorArr;
 		vector<D3DXVECTOR2> m_ObjVerUVArr;
-		vector<std::string> m_ObjVerIndexArr;
+		std::string m_ObjVerIndex;
 
 		
 
@@ -145,14 +145,22 @@ void ProcessMesh( FbxNode* node )
 				ReadVertex(pMesh , ctrlPointIndex , &vertex[j]);  
 
 				int posFind = VectorFind<D3DXVECTOR3>(m_ObjVerPosArr,vertex[j]);
-				if (posFind!=-1)
+				if (posFind==-1)
 				{
 					m_ObjVerPosArr.push_back(vertex[j]);
 					currentPosIndex+=1;
+
+					char posIndex[128];
+					Format(&posIndex[0],"%d",currentPosIndex);
+					m_ObjVerIndex.append(posIndex);
+					m_ObjVerIndex.append("/");
 				}
 				else
 				{
-					
+					char posIndex[128];
+					Format(&posIndex[0],"%d",posFind);
+					m_ObjVerIndex.append(posIndex);
+					m_ObjVerIndex.append("/");
 				}
 
 				// Read the color of each vertex  
@@ -164,14 +172,22 @@ void ProcessMesh( FbxNode* node )
 					ReadUV(pMesh , ctrlPointIndex , pMesh->GetTextureUVIndex(i, j) , k , &(uv[j][k]));  
 
 					int uvFind = VectorFind<D3DXVECTOR2>(m_ObjVerUVArr,uv[j][k]);
-					if (uvFind!=-1)
+					if (uvFind==-1)
 					{
 						m_ObjVerUVArr.push_back(uv[j][k]);
 						currentUVIndex+=1;
+
+						char uvIndex[128];
+						Format(&uvIndex[0],"%d",currentUVIndex);
+						m_ObjVerIndex.append(uvIndex);
+						m_ObjVerIndex.append("/");
 					}
 					else
 					{
-
+						char uvIndex[128];
+						Format(&uvIndex[0],"%d",uvFind);
+						m_ObjVerIndex.append(uvIndex);
+						m_ObjVerIndex.append("/");
 					}
 				}  
 
@@ -179,14 +195,22 @@ void ProcessMesh( FbxNode* node )
 				ReadNormal(pMesh , ctrlPointIndex , vertexCounter , &normal[j]);  
 				
 				int norFind = VectorFind<D3DXVECTOR3>(m_ObjVerNorArr,normal[j]);
-				if (norFind!=-1)
+				if (norFind==-1)
 				{
 					m_ObjVerNorArr.push_back(vertex[j]);
 					currentNorIndex+=1;
+
+					char normalIndex[128];
+					Format(&normalIndex[0],"%d",currentNorIndex);
+					m_ObjVerIndex.append(normalIndex);
+					m_ObjVerIndex.append("\n");
 				}
 				else
 				{
-
+					char normalIndex[128];
+					Format(&normalIndex[0],"%d",norFind);
+					m_ObjVerIndex.append(normalIndex);
+					m_ObjVerIndex.append("\n");
 				}
 				// Read the tangent of each vertex  
 				ReadTangent(pMesh , ctrlPointIndex , vertexCounter , &tangent[j]);  
