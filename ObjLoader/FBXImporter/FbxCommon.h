@@ -3,6 +3,7 @@
 #include "PreDefined.h"
 #include <fbxsdk.h>
 #include <d3dx9.h>
+#include <string>
 
 void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 void DestroySdkObjects(FbxManager* pManager, bool pExitStatus);
@@ -10,7 +11,7 @@ void LoadScene(FbxManager* pManager,FbxScene*& pScene, const char* fileName);
 
 void WalkHierarchy(const FbxScene* pScene);
 void WalkHierarchy(FbxNode *fbxNode);
-void ProcessMesh(FbxNode* node);
+void ProcessMesh(FbxNode* node, std::string& output);
 
 void ReadVertex(FbxMesh* pMesh , int ctrlPointIndex , D3DXVECTOR3* pVertex)  ;
 void ReadColor(FbxMesh* pMesh , int ctrlPointIndex , int vertexCounter , D3DXVECTOR4* pColor) ; 

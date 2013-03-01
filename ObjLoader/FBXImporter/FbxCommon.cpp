@@ -71,17 +71,19 @@ void WalkHierarchy(const FbxScene* pScene)
 void WalkHierarchy(FbxNode *fbxNode)
 {    
 	FbxNodeAttribute* nodeAtt = fbxNode->GetNodeAttribute();
+	std::string out;
 	if(nodeAtt == NULL)
 	{
 		printf("null node");
 	}
 	else
 	{
+		
 		switch (nodeAtt->GetAttributeType())
 		{
 		case FbxNodeAttribute::eMarker:                  break;
 		case FbxNodeAttribute::eSkeleton:                break;
-		case FbxNodeAttribute::eMesh:	  ProcessMesh(fbxNode); break;
+		case FbxNodeAttribute::eMesh:	  ProcessMesh(fbxNode,out); break;
 		case FbxNodeAttribute::eCamera:                  break;
 		case FbxNodeAttribute::eLight:                   break;
 		case FbxNodeAttribute::eBoundary:                break;
@@ -96,7 +98,7 @@ void WalkHierarchy(FbxNode *fbxNode)
 		case FbxNodeAttribute::eTrimNurbsSurface:        break;
 		case FbxNodeAttribute::eUnknown:				 break;
 		}
-
+		
 	}
 
 	//process children
@@ -104,9 +106,15 @@ void WalkHierarchy(FbxNode *fbxNode)
 	{
 		WalkHierarchy(fbxNode->GetChild(i));
 	}
+
+	void* hFile = CreateFile("test.txt",GENERIC_WRITE ,0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	DWORD byteswrite;
+	WriteFile(hFile, out.c_str(), out.size(),&byteswrite,NULL);
+	FBXSDK_printf("Convert complete!\n");
 }
 
-void ProcessMesh( FbxNode* node )
+void ProcessMesh( FbxNode* node , std::string& output)
 {
 	if(node->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eMesh)
 	{
@@ -121,8 +129,6 @@ void ProcessMesh( FbxNode* node )
 		vector<D3DXVECTOR2> m_ObjVerUVArr;
 		std::string m_ObjVerIndex;
 
-		
-
 		D3DXVECTOR3 vertex[3];  
 		D3DXVECTOR4 color[3];  
 		D3DXVECTOR3 normal[3];  
@@ -135,8 +141,12 @@ void ProcessMesh( FbxNode* node )
 		int currentPosIndex = -1;
 		int currentUVIndex  = -1;
 		int currentNorIndex = -1;
+
+		output.append("g submesh1\n");
+
 		for(int i = 0 ; i < triangleCount ; ++i)  
 		{  
+			m_ObjVerIndex.append("f ");
 			for(int j = 0 ; j < 3 ; j++)  
 			{  
 				int ctrlPointIndex = pMesh->GetPolygonVertex(i , j);  
@@ -151,14 +161,14 @@ void ProcessMesh( FbxNode* node )
 					currentPosIndex+=1;
 
 					char posIndex[128];
-					Format(&posIndex[0],"%d",currentPosIndex);
+					Format(&posIndex[0],"%d",currentPosIndex+1);
 					m_ObjVerIndex.append(posIndex);
 					m_ObjVerIndex.append("/");
 				}
 				else
 				{
 					char posIndex[128];
-					Format(&posIndex[0],"%d",posFind);
+					Format(&posIndex[0],"%d",posFind+1);
 					m_ObjVerIndex.append(posIndex);
 					m_ObjVerIndex.append("/");
 				}
@@ -178,14 +188,14 @@ void ProcessMesh( FbxNode* node )
 						currentUVIndex+=1;
 
 						char uvIndex[128];
-						Format(&uvIndex[0],"%d",currentUVIndex);
+						Format(&uvIndex[0],"%d",currentUVIndex+1);
 						m_ObjVerIndex.append(uvIndex);
 						m_ObjVerIndex.append("/");
 					}
 					else
 					{
 						char uvIndex[128];
-						Format(&uvIndex[0],"%d",uvFind);
+						Format(&uvIndex[0],"%d",uvFind+1);
 						m_ObjVerIndex.append(uvIndex);
 						m_ObjVerIndex.append("/");
 					}
@@ -201,25 +211,69 @@ void ProcessMesh( FbxNode* node )
 					currentNorIndex+=1;
 
 					char normalIndex[128];
-					Format(&normalIndex[0],"%d",currentNorIndex);
+					Format(&normalIndex[0],"%d",currentNorIndex+1);
 					m_ObjVerIndex.append(normalIndex);
-					m_ObjVerIndex.append("\n");
+					m_ObjVerIndex.append(" ");
 				}
 				else
 				{
 					char normalIndex[128];
-					Format(&normalIndex[0],"%d",norFind);
+					Format(&normalIndex[0],"%d",norFind+1);
 					m_ObjVerIndex.append(normalIndex);
-					m_ObjVerIndex.append("\n");
+					m_ObjVerIndex.append(" ");
 				}
 				// Read the tangent of each vertex  
 				ReadTangent(pMesh , ctrlPointIndex , vertexCounter , &tangent[j]);  
 
 				vertexCounter++;  
 			}  
-
+			m_ObjVerIndex.append("\n");
 			// 根据读入的信息组装三角形，并以某种方式使用即可，比如存入到列表中、保存到文件等...  
-		}  
+		} 
+		char posIndex[128];
+
+		for (int i = 0 ;i<m_ObjVerPosArr.size() ;i++)
+		{
+			output.append("v ");
+			Format(posIndex,128,"%.6f",m_ObjVerPosArr[i].x);
+			output.append(posIndex);
+			output.append(" ");
+			
+			Format(posIndex,128,"%.6f",m_ObjVerPosArr[i].y);
+			output.append(posIndex);
+			output.append(" ");
+			
+			Format(posIndex,128,"%.6f",m_ObjVerPosArr[i].z);
+			output.append(posIndex);
+			
+			output.append("\n");
+		}
+
+		for (int i = 0 ;i<m_ObjVerUVArr.size() ;i++)
+		{
+			output.append("vt ");
+			Format(posIndex,128,"%.6f",m_ObjVerUVArr[i].x);
+			output.append(posIndex);
+			output.append(" ");
+			Format(posIndex,128,"%.6f",m_ObjVerUVArr[i].y);
+			output.append(posIndex);
+			output.append("\n");
+		}
+
+		for (int i = 0 ;i<m_ObjVerNorArr.size() ;i++)
+		{
+			output.append("vn ");
+			Format(posIndex,128,"%.6f",m_ObjVerNorArr[i].x);
+			output.append(posIndex);
+			output.append(" ");
+			Format(posIndex,128,"%.6f",m_ObjVerNorArr[i].y);
+			output.append(posIndex);
+			output.append(" ");
+			Format(posIndex,128,"%.6f",m_ObjVerNorArr[i].z);
+			output.append(posIndex);
+			output.append("\n");
+		}
+		output.append(m_ObjVerIndex);
 	}
 }
 

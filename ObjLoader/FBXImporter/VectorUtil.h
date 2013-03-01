@@ -16,3 +16,5 @@ int VectorFind(std::vector<T>& vec,T value)
 }
 
 void __cdecl Format(const char* out,const char* fmtString, ...);
+
+void __cdecl Format(const char* out,int bufflength,const char* fmtString, ...);
